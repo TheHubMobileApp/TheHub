@@ -54,6 +54,10 @@ public class FacebookLoginTask extends AsyncTask<String, Void, String> {
 			postParameters.add(new BasicNameValuePair("access_token", access_token));
 			postParameters.add(new BasicNameValuePair("expires", expire));
 
+            // Eventually should not hardcode this and should pass it in
+            // TODO: should be busy and what I said above ^
+            postParameters.add(new BasicNameValuePair("available", "free"));
+
 			UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
 					postParameters);
 
@@ -78,8 +82,9 @@ public class FacebookLoginTask extends AsyncTask<String, Void, String> {
 	}
 
 	protected void onPostExecute(String response) {
-		//Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
-		//		.show();
+		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
+				.show();
+
 		// Toast.makeText(context, "user_id = " + user_id + " access_t = " +
 		// access_token + " exp = " + expire, Toast.LENGTH_LONG).show();
 		JSONObject resp;
