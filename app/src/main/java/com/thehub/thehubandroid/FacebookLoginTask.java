@@ -38,6 +38,11 @@ public class FacebookLoginTask extends AsyncTask<String, Void, String> {
 		BufferedReader inBuffer = null;
 		String url = params[0];
 		String result = "fail";
+
+        /**
+         *   0    1           2             3
+         * {url, user_id, access_token, expire_string}
+         */
 		try {
 
 			// Get info from params
@@ -106,12 +111,9 @@ public class FacebookLoginTask extends AsyncTask<String, Void, String> {
 			hubprefsEditor.commit();
 
             String source = ukey+":"+akey;
-            Log.i("DEBUG", "Basic " + Base64.encodeToString(source.getBytes(), Base64.URL_SAFE | Base64.NO_WRAP));
 
-//			Log.i("Facebook Login:", "uid = " + hubbaprefs.getString("fb_user_id", "") +
-//					"\naccess_token = " + hubbaprefs.getString("fb_access_token", "") +
-//					"\nexpire = " + hubbaprefs.getString("fb_expire", ""));
-//			Log.i("Our Login:", "ukey = " + hubbaprefs.getString("ukey", "") + "\nakey = " + hubbaprefs.getString("akey", ""));
+            // TODO: Delete this logging
+            Log.i("DEBUG", "Basic " + Base64.encodeToString(source.getBytes(), Base64.URL_SAFE | Base64.NO_WRAP));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
