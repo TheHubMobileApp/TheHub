@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.facebook.FacebookException;
 import com.facebook.Request;
@@ -31,6 +32,7 @@ public class MainFragment extends Fragment {
     private String user_id;
     private Session sesh;
     private View rootView;
+    private Button view_list_button;
 
     private void onSessionStateChange(Session session, SessionState state,
                                       Exception exception) {
@@ -115,6 +117,15 @@ public class MainFragment extends Fragment {
         rootView = inflater.inflate(R.layout.activity_main, container, false);
 
         LoginButton authButton = (LoginButton) rootView.findViewById(R.id.authButton);
+        view_list_button = (Button) rootView.findViewById(R.id.listViewButton);
+
+        view_list_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FriendsListView.class);
+                startActivity(intent);
+            }
+        });
 
         // error listener
         authButton.setOnErrorListener(new OnErrorListener() {

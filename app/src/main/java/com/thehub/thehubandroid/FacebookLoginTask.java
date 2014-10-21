@@ -87,8 +87,8 @@ public class FacebookLoginTask extends AsyncTask<String, Void, String> {
 	}
 
 	protected void onPostExecute(String response) {
-		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
-				.show();
+//		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
+//				.show();
 
 		// Toast.makeText(context, "user_id = " + user_id + " access_t = " +
 		// access_token + " exp = " + expire, Toast.LENGTH_LONG).show();
