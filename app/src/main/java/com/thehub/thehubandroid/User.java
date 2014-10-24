@@ -32,4 +32,19 @@ public class User {
         new GetFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
 
+    public static void getFacebookFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
+        String url = Utils.IP_PROD + "/invite_friends";
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("") || akey.equals("")){
+            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new GetFacebookFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
+    }
+
 }

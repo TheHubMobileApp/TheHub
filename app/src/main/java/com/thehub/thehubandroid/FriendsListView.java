@@ -34,6 +34,9 @@ public class FriendsListView extends Activity {
 
             // populate spots array (no ProgressDialog since there is one for the map)
             User.getFriends(context, listView, usersArray);
+
+            // TODO: Delete this, I am using it for testing (R)
+//            User.getFacebookFriends(context, listView, usersArray);
         } else {
             Log.i("DEBUG", "YOU DONE FUCKED UP");
         }

@@ -21,6 +21,7 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.LoginButton.OnErrorListener;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class MainFragment extends Fragment {
@@ -135,7 +136,7 @@ public class MainFragment extends Fragment {
                 Log.e("FACEBOOK ERROR", "Error " + error.getMessage());
             }
         });
-        //authButton.setPublishPermissions(Arrays.asList("publish_actions"));
+        authButton.setPublishPermissions(Arrays.asList("user_friends"));
         authButton.setFragment(this);
 
         return rootView;
