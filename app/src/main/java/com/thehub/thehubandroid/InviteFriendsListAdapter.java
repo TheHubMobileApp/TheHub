@@ -1,6 +1,5 @@
 package com.thehub.thehubandroid;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,43 +13,30 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.List;
 
-public class FriendsListAdapter extends BaseAdapter {
 
+public class InviteFriendsListAdapter extends BaseAdapter {
     private Context context;
-    private List<HashMap<String, String>> users;
+    private List<HashMap<String, String>> friends;
 
     static class ViewHolder {
         ImageView profile_picture;
         TextView display_name;
     }
 
-//    public class CustomComparator implements Comparator<HashMap<String, String>> {
-//        @Override
-//        public int compare(HashMap<String, String> spotOne, HashMap<String, String> spotTwo) {
-//            double distanceOne = Double.parseDouble(spotOne.get("distance"));
-//            double distanceTwo = Double.parseDouble(spotTwo.get("distance"));
-//            return Double.compare(distanceOne, distanceTwo);
-//        }
-//    }
-
-    public FriendsListAdapter(Context context, List<HashMap<String, String>> users, int resource) {
+    public InviteFriendsListAdapter(Context context, List<HashMap<String, String>> friends, int resource) {
         this.setContext(context);
-//        Collections.sort(spots, new CustomComparator());
-        this.users = users;
+        this.friends = friends;
     }
 
-    //public View newView(Context context, Cursor cursor, ViewGroup parent) {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder vh = null;
-        HashMap<String, String> user = users.get(position);
+        HashMap<String, String> friend = friends.get(position);
 
         if (v == null) {
-            //Toast.makeText(context, "Populating... " + spot.get("name"), Toast.LENGTH_LONG).show();
-
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.user_list_item, null);
+            v = inflater.inflate(R.layout.invite_list_item, null);
 
             vh = new ViewHolder();
 
@@ -65,7 +51,7 @@ public class FriendsListAdapter extends BaseAdapter {
         // Convert the dp value for xml to pixels (casted to int from float)
         int size = Utils.convertDpToPixel(100, context);
 
-        String prof_pic = user.get("picture_url");
+        String prof_pic = friend.get("picture_url");
         Picasso.with(context)
                 .load(prof_pic)
                 .centerCrop()
@@ -74,7 +60,7 @@ public class FriendsListAdapter extends BaseAdapter {
                 .noFade()
                 .into(vh.profile_picture);
 
-        vh.display_name.setText(user.get("display_name"));
+        vh.display_name.setText(friend.get("display_name"));
 
         return v;
     }
@@ -91,14 +77,14 @@ public class FriendsListAdapter extends BaseAdapter {
      * @see android.widget.Adapter#getCount()
      */
     public int getCount() {
-        return users.size();
+        return friends.size();
     }
 
     /**
      * @see android.widget.Adapter#getItem(int)
      */
     public Object getItem(int position) {
-        return users.get(position);
+        return friends.get(position);
     }
 
     /**

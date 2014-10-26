@@ -29,7 +29,7 @@ public class GetFacebookFriendsTask extends AsyncTask<String, Void, String> {
     private ListView listView;
     private String ukey;
     private String akey;
-    private FriendsListAdapter adapter;
+    private InviteFriendsListAdapter adapter;
 
     public GetFacebookFriendsTask(Context context, ListView listview, ArrayList<HashMap<String, String>> usersArray) {
         this.context = context;
@@ -117,7 +117,7 @@ public class GetFacebookFriendsTask extends AsyncTask<String, Void, String> {
         }
 
         // TODO: Make this for the other list view eventually
-        adapter = new FriendsListAdapter(context, usersArray, R.layout.user_list);
+        adapter = new InviteFriendsListAdapter(context, usersArray, R.layout.user_list);
         listView.setAdapter(adapter);
     }
 }

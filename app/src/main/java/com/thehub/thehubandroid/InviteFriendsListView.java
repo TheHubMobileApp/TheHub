@@ -9,34 +9,32 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FriendsListView extends Activity {
-    private FriendsListAdapter dataAdapter;
+public class InviteFriendsListView extends Activity {
     private ListView listView;
     private Context context;
-    private ArrayList<HashMap<String, String>> usersArray;
+    private ArrayList<HashMap<String, String>> friendsArray;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_list);
         context = getApplicationContext();
-
-        // get listview
         listView = (ListView) findViewById(R.id.listView);
 
         // TODO: remove the if/else
         if(listView != null){
             // Create empty array (will update it later)
-            usersArray = new ArrayList<HashMap<String, String>>();
+            friendsArray = new ArrayList<HashMap<String, String>>();
 
-            // populate spots array (no ProgressDialog since there is one for the map)
-            User.getFriends(context, listView, usersArray);
-
-            // TODO: Delete this, I am using it for testing (R)
-//            User.getFacebookFriends(context, listView, usersArray);
+            /**
+             *
+             * Get your facebook friends and display the list view using
+             * a {@link com.thehub.thehubandroid.GetFacebookFriendsTask}.
+             *
+              */
+            User.getFacebookFriends(context, listView, friendsArray);
         } else {
             Log.i("DEBUG", "YOU DONE FUCKED UP");
         }
     }
-
 }
