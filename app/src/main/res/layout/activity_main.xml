@@ -32,4 +32,14 @@
         android:textColor="#FFF"
         android:layout_gravity="center_horizontal" />
 
+    <Button
+        android:id="@+id/editAvailButton"
+        android:layout_marginTop="30dp"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:text="Edit Availability"
+        android:background="#000"
+        android:textColor="#FFF"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

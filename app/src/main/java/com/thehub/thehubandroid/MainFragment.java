@@ -35,6 +35,7 @@ public class MainFragment extends Fragment {
     private View rootView;
     private Button view_list_button;
     private Button invite_button;
+    private Button edit_avail_button;
 
     private void onSessionStateChange(Session session, SessionState state,
                                       Exception exception) {
@@ -121,7 +122,7 @@ public class MainFragment extends Fragment {
         LoginButton authButton = (LoginButton) rootView.findViewById(R.id.authButton);
         view_list_button = (Button) rootView.findViewById(R.id.listViewButton);
         invite_button = (Button) rootView.findViewById(R.id.inviteButton);
-
+        edit_avail_button = (Button) rootView.findViewById(R.id.editAvailButton);
 
         view_list_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +136,14 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), InviteFriendsListView.class);
+                startActivity(intent);
+            }
+        });
+
+        edit_avail_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditAvailActivity.class);
                 startActivity(intent);
             }
         });
