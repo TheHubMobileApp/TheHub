@@ -1,9 +1,13 @@
 package com.thehub.thehubandroid;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Base64;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -13,27 +17,21 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public class GetFacebookFriendsTask extends AsyncTask<String, Void, String> {
+public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
     private Context context;
-    private ArrayList<HashMap<String, String>> usersArray;
-    private ListView listView;
     private String ukey;
     private String akey;
-    private InviteFriendsListAdapter adapter;
+    private Activity activity;
 
-    public GetFacebookFriendsTask(Context context, ListView listview, ArrayList<HashMap<String, String>> usersArray) {
+    public GetCurrentUserTask(Context context, Activity activity) {
         this.context = context;
-        this.listView = listview;
-        this.usersArray = usersArray;
+        this.activity = activity;
     }
 
     @Override
@@ -81,33 +79,36 @@ public class GetFacebookFriendsTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
 //        Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_LONG).show();
 
-        JSONObject resp;
-        JSONArray usersJsonArray;
         JSONObject user;
+        JSONObject availability;
         try {
-            resp = new JSONObject(response);
-            usersJsonArray = resp.getJSONArray("users");
-            for (int i = 0; i < usersJsonArray.length(); i++) {
-                HashMap<String, String> userMap = new HashMap<String, String>();
-                try {
-                    user = usersJsonArray.getJSONObject(i);
+            user = new JSONObject(response);
+            availability = user.getJSONObject("availability");
+            String available = availability.getString("available");
 
-                    userMap.put("availability", "free");
-                    userMap.put("display_name", user.getString("name"));
-                    userMap.put("picture_url", user.getString("picture"));
+            TextView avail_text = (TextView) activity.findViewById(R.id.availText);
+            RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
 
-                } catch (JSONException e) {
-                    Toast.makeText(context, "Unable to get friends", Toast.LENGTH_LONG).show();
-                }
-                usersArray.add(userMap);
+//            Toast.makeText(context, "avail = " + available, Toast.LENGTH_LONG).show();
+
+            if(available.equals(Utils.FREE)) {
+                avail_text.setText(Utils.FREE_MESSAGE);
+                background.setBackgroundColor(Color.parseColor("#05800B"));
+
+                avail_text.setVisibility(View.VISIBLE);
+            } else if(available.equals(Utils.BUSY)) {
+                background.setBackgroundColor(Color.parseColor("#ffed1919"));
+                avail_text.setText(Utils.BUSY_MESSAGE);
+
+                avail_text.setVisibility(View.VISIBLE);
+            } else {
+                Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
-            Toast.makeText(context, "Error fetching friends list.\n", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error fetching friends list.\n", Toast.LENGTH_SHORT).show();
         }
 
-        // TODO: Make this for the other list view eventually
-        adapter = new InviteFriendsListAdapter(context, usersArray, R.layout.user_list);
-        listView.setAdapter(adapter);
     }
 }
