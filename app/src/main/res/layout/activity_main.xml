@@ -1,35 +1,49 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#000">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:src="@drawable/the_hub_logo" />
 
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/inviteButton"
+        android:layout_alignLeft="@+id/inviteButton"
+        android:layout_alignStart="@+id/inviteButton" />
 
     <Button
         android:id="@+id/listViewButton"
-        android:layout_marginTop="30dp"
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:text="View Friends"
-        android:background="#000"
+        android:background="#ff9d0700"
         android:textColor="#FFF"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/inviteButton"
+        android:layout_alignStart="@+id/inviteButton" />
 
     <Button
         android:id="@+id/inviteButton"
-        android:layout_marginTop="30dp"
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:text="Invite Friends"
-        android:background="#000"
+        android:background="#ff9d0700"
         android:textColor="#FFF"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/listViewButton"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#ccc"
+    android:background="#ff9d0700"
     android:layout_height="wrap_content"
     android:padding="10dp">
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Robbie Small"
-        android:textColor="#000"
+        android:textColor="#ffffffff"
         android:textSize="22sp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/profPic"
@@ -29,7 +29,6 @@
         android:layout_centerVertical="true"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/ic_action_new"
-        />
+        android:background="@drawable/new_icon_green" />
 
 </RelativeLayout>
