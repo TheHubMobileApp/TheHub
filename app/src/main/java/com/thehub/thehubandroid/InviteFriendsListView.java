@@ -17,7 +17,7 @@ public class InviteFriendsListView extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_list);
+        setContentView(R.layout.invite_list);
         context = getApplicationContext();
         listView = (ListView) findViewById(R.id.listView);
 
