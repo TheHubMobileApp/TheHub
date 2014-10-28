@@ -6,6 +6,7 @@
     android:background="#000">
 
     <ImageView
+        android:layout_marginTop="60dp"
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +33,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/inviteButton"
-        android:layout_alignStart="@+id/inviteButton" />
+        android:layout_alignStart="@+id/inviteButton"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/inviteButton"
@@ -44,9 +46,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_above="@+id/listViewButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"/>
 
     <Button
+        android:textSize="20sp"
         android:id="@+id/editAvailButton"
         android:layout_width="250dp"
         android:layout_height="55dp"

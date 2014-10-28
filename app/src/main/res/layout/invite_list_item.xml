@@ -25,6 +25,7 @@
         android:layout_toEndOf="@+id/profPic" />
 
     <ImageButton
+        android:id="@+id/inviteFriendButton"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_width="30dp"

@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +39,16 @@ public class InviteFriendsListAdapter extends BaseAdapter {
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.invite_list_item, null);
+
+            // Do something for invite button click... lol
+            // TODO: do something for real...
+            ImageButton invite_button = (ImageButton) v.findViewById(R.id.inviteFriendButton);
+            invite_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Notification Sent!", Toast.LENGTH_SHORT).show();
+                }
+            });
 
             vh = new ViewHolder();
 
