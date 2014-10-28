@@ -100,7 +100,7 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
                 background.setBackgroundColor(Color.parseColor("#05800B"));
                 avail_text.setText(Utils.FREE_MESSAGE);
             } else if(available.equals(Utils.BUSY)) {
-                background.setBackgroundColor(Color.parseColor("#ffed1919"));
+                background.setBackgroundColor(Color.parseColor("#ed1919"));
                 avail_text.setText(Utils.BUSY_MESSAGE);
             } else {
                 Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();

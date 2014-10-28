@@ -2,14 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ccc"
+    android:background="#000"
     android:orientation="vertical"
     android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/profPic"
@@ -22,7 +21,9 @@
             android:id="@+id/displayName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/profPic"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/profPic"
+            android:layout_toRightOf="@+id/profPic"
             android:text="Robbie Small"
             android:textColor="#FFF"
             android:textSize="25sp" />

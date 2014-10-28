@@ -2,6 +2,8 @@ package com.thehub.thehubandroid;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,7 @@ public class FriendsListAdapter extends BaseAdapter {
         View v = convertView;
         ViewHolder vh = null;
         HashMap<String, String> user = users.get(position);
+        String availability = user.get("availability");
 
         if (v == null) {
             //Toast.makeText(context, "Populating... " + spot.get("name"), Toast.LENGTH_LONG).show();
@@ -52,6 +55,14 @@ public class FriendsListAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.user_list_item, null);
 
+            if(availability.equals(Utils.FREE)) {
+                v.setBackgroundColor(Color.parseColor("#05800B"));
+            } else if (availability.equals(Utils.BUSY)) {
+                v.setBackgroundColor(Color.parseColor("#ed1919"));
+            } else {
+                // TODO: Remove this?
+                Log.i("DEBUG", "Illegal availability");
+            }
             vh = new ViewHolder();
 
             v.setTag(vh);
