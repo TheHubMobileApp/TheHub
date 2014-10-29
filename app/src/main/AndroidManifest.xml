@@ -19,14 +19,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@android:style/Theme.NoTitleBar"
             android:name=".FriendsListView"
             android:label="Friends" >
         </activity>
         <activity
+            android:theme="@android:style/Theme.NoTitleBar"
             android:name=".InviteFriendsListView"
             android:label="Invite Friends" >
         </activity>
         <activity
+            android:theme="@android:style/Theme.NoTitleBar"
             android:name=".EditAvailActivity"
             android:label="Edit Availability" >
         </activity>

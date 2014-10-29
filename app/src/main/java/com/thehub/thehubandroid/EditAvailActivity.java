@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EditAvailActivity extends Activity {
     private Context context;
@@ -36,7 +35,7 @@ public class EditAvailActivity extends Activity {
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
                     User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY);
                 } else{
-                    Toast.makeText(context, "illegal avail text: " + avail_text, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "illegal avail text: " + avail_text, Toast.LENGTH_SHORT).show();
                 }
             }
         });
