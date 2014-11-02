@@ -127,18 +127,18 @@ public class MainFragment extends Fragment {
         view_list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FriendsListView.class);
+                Intent intent = new Intent(getActivity(), ActionActivity.class);
                 startActivity(intent);
             }
         });
 
-        invite_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), InviteFriendsListView.class);
-                startActivity(intent);
-            }
-        });
+//        invite_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), InviteFriendsListView.class);
+//                startActivity(intent);
+//            }
+//        });
 
         edit_avail_button.setOnClickListener(new View.OnClickListener() {
             @Override

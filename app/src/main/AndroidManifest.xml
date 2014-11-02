@@ -18,18 +18,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--android:theme="@android:style/Theme.NoTitleBar"-->
+        <!--<activity-->
+            <!--android:theme="@style/AppTheme"-->
+            <!--android:name=".FriendsListView"-->
+            <!--android:label="Friends" >-->
+        <!--</activity>-->
+        <!--<activity-->
+            <!--android:theme="@style/AppTheme"-->
+            <!--android:name=".InviteFriendsListView"-->
+            <!--android:label="Invite Friends" >-->
+        <!--</activity>-->
         <activity
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:name=".FriendsListView"
-            android:label="Friends" >
+            android:theme="@style/AppTheme"
+            android:name=".ActionActivity"
+            android:label="The Hub" >
         </activity>
         <activity
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:name=".InviteFriendsListView"
-            android:label="Invite Friends" >
-        </activity>
-        <activity
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@style/AppTheme"
             android:name=".EditAvailActivity"
             android:label="Edit Availability" >
         </activity>

@@ -1,31 +1,45 @@
 package com.thehub.thehubandroid;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FriendsListView extends Activity {
+public class FriendsListView extends Fragment {
     private FriendsListAdapter dataAdapter;
     private ListView listView;
     private Context context;
+    private View rootView;
     private ArrayList<HashMap<String, String>> usersArray;
 
+    //    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.user_list);
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_list);
-        context = getApplicationContext();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+//        context = getApplicationContext();
+
+        // enable menu at bottom
+        setHasOptionsMenu(true);
+
+        // Inflate the layout for this fragment
+        context = getActivity().getBaseContext();
+        rootView = inflater.inflate(R.layout.user_list, container, false);
 
         // get listview
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) rootView.findViewById(R.id.listView);
 
         // TODO: remove the if/else
-        if(listView != null){
+        if (listView != null) {
             // Create empty array (will update it later)
             usersArray = new ArrayList<HashMap<String, String>>();
 
@@ -37,6 +51,8 @@ public class FriendsListView extends Activity {
         } else {
             Log.i("DEBUG", "YOU DONE FUCKED UP");
         }
+
+        return rootView;
     }
 
 }

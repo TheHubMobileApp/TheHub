@@ -92,7 +92,9 @@ public class GetFacebookFriendsTask extends AsyncTask<String, Void, String> {
                 try {
                     user = usersJsonArray.getJSONObject(i);
 
+                    // TODO: remove the availability
                     userMap.put("availability", "free");
+
                     userMap.put("display_name", user.getString("name"));
                     userMap.put("picture_url", user.getString("picture"));
 
@@ -107,7 +109,7 @@ public class GetFacebookFriendsTask extends AsyncTask<String, Void, String> {
         }
 
         // TODO: Make this for the other list view eventually
-        adapter = new InviteFriendsListAdapter(context, usersArray, R.layout.user_list);
+        adapter = new InviteFriendsListAdapter(context, usersArray, R.layout.invite_list);
         listView.setAdapter(adapter);
     }
 }
