@@ -3,7 +3,6 @@ package com.thehub.thehubandroid;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,6 @@ public class FriendsListView extends Fragment {
     private View rootView;
     private ArrayList<HashMap<String, String>> usersArray;
 
-    //    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.user_list);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,21 +33,24 @@ public class FriendsListView extends Fragment {
         // get listview
         listView = (ListView) rootView.findViewById(R.id.listView);
 
-        // TODO: remove the if/else
-        if (listView != null) {
-            // Create empty array (will update it later)
-            usersArray = new ArrayList<HashMap<String, String>>();
+        // Create empty array (will update it later)
+        usersArray = new ArrayList<HashMap<String, String>>();
 
-            // populate spots array (no ProgressDialog since there is one for the map)
-            User.getFriends(context, listView, usersArray);
+        // populate spots array (no ProgressDialog since there is one for the map)
+        User.getFriends(context, listView, usersArray);
 
-            // TODO: Delete this, I am using it for testing (R)
-//            User.getFacebookFriends(context, listView, usersArray);
-        } else {
-            Log.i("DEBUG", "YOU DONE FUCKED UP");
-        }
 
         return rootView;
     }
+
+    public void onResume() {
+		super.onResume();
+
+        // Create empty array (will update it later)
+        usersArray = new ArrayList<HashMap<String, String>>();
+
+        // populate spots array (no ProgressDialog since there is one for the map)
+        User.getFriends(context, listView, usersArray);
+	}
 
 }

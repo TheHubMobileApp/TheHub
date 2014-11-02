@@ -12,17 +12,30 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class ActionActivity extends ActionBarActivity {
+//    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Notice that setContentView() is not used, because we use the root
-        // android.R.id.content as the container for each fragment
+
+        // For swipe
+//        setContentView(R.layout.action_activity);
+//        mViewPager = (ViewPager) findViewById(R.id.pager);
+//        mViewPager.setOnPageChangeListener(
+//                new ViewPager.SimpleOnPageChangeListener() {
+//                    @Override
+//                    public void onPageSelected(int position) {
+//                        // When swiping between pages, select the
+//                        // corresponding tab.
+//                        Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
+//                        getActionBar().setSelectedNavigationItem(position);
+//                    }
+//                });
 
         // setup action bar for tabs
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayShowTitleEnabled(false);
 
         ActionBar.Tab tab = actionBar.newTab()
                 .setText("View Friends")
