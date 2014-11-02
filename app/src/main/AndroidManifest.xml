@@ -35,7 +35,7 @@
             android:label="The Hub" >
         </activity>
         <activity
-            android:theme="@style/AppTheme"
+            android:theme="@android:style/Theme.NoTitleBar"
             android:name=".EditAvailActivity"
             android:label="Edit Availability" >
         </activity>

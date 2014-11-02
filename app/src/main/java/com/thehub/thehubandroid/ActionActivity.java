@@ -84,10 +84,6 @@ public class ActionActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.action_add:
-                // Do Something
-
-                return true;
             case R.id.action_settings:
                 // Do Something
                 Intent intent = new Intent(getApplicationContext(), EditAvailActivity.class);

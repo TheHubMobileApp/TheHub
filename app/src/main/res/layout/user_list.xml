@@ -5,16 +5,6 @@
     android:orientation="vertical"
     android:background="#000">
 
-    <ImageView
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:scaleType="centerInside"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/the_hub_logo" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

@@ -18,7 +18,7 @@
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/editAvailButton"
+        android:layout_above="@+id/listViewButton"
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true" />
 
@@ -26,41 +26,13 @@
         android:id="@+id/listViewButton"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:text="View Friends"
+        android:text="Proceed to App"
         android:background="#ff9d0700"
         android:textColor="#FFF"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/inviteButton"
-        android:layout_alignStart="@+id/inviteButton"
-        android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/inviteButton"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:text="Invite Friends"
-        android:background="#ff9d0700"
-        android:textColor="#FFF"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@+id/listViewButton"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"/>
-
-    <Button
-        android:textSize="20sp"
-        android:id="@+id/editAvailButton"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:text="Edit Availability"
-        android:background="#ff9d0700"
-        android:textColor="#FFF"
-        android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/inviteButton"
-        android:layout_marginBottom="10dp"
-        android:layout_alignLeft="@+id/authButton"
-        android:layout_alignStart="@+id/authButton" />
 
 </RelativeLayout>
