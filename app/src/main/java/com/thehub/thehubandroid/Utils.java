@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
  * Created by Robbie on 10/2/14.
  */
 public class Utils {
+    public static final int NUM_TABS = 2;
     public static final String DEBUG_TAG = "Debug";
     public static final String PREFS_FILE = "com.thehub.thehubandroid.prefs";
 
