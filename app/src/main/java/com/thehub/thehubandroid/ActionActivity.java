@@ -22,10 +22,10 @@ public class ActionActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.action_activity);
+        
         // For swipe
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        setContentView(mViewPager);
 
         // setup action bar for tabs
         ActionBar actionBar = getSupportActionBar();
