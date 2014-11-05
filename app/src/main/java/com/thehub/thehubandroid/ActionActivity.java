@@ -23,7 +23,7 @@ public class ActionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.action_activity);
-        
+
         // For swipe
         mViewPager = (ViewPager) findViewById(R.id.pager);
 

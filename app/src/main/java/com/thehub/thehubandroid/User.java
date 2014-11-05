@@ -19,6 +19,7 @@ public class User {
     }
 
     // TODO: add in an expire for the status
+    // TODO: add in an activity level (int or string but most be string to send to db... its weird)
     public static void updateAvailability(Context context, Activity activity, String available) {
         String url = Utils.IP_PROD + "/user/update";
 
@@ -31,7 +32,10 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey, akey});
+        // TODO: Do this for real as a param
+        String activity_level = "10";
+
+        new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey, akey, activity_level});
     }
 
     public static void getFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
