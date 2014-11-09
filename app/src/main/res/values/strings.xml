@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_id">291310437743648</string>
+    <string name="change_status">Change Status</string>
 
 </resources>

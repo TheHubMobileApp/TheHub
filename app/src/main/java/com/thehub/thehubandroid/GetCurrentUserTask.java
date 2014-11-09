@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,22 +86,25 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
             user = new JSONObject(response);
             availability = user.getJSONObject("availability");
             String available = availability.getString("available");
+            int activity_level = availability.getInt("activity_level");
 
             TextView avail_text = (TextView) activity.findViewById(R.id.availText);
+            SeekBar activity_level_bar = (SeekBar) activity.findViewById(R.id.activity_level);
             RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
-
-//            Toast.makeText(context, "avail = " + available, Toast.LENGTH_LONG).show();
 
             if(available.equals(Utils.FREE)) {
                 avail_text.setText(Utils.FREE_MESSAGE);
                 background.setBackgroundColor(Color.parseColor("#05800B"));
 
                 avail_text.setVisibility(View.VISIBLE);
+                activity_level_bar.setProgress(activity_level);
             } else if(available.equals(Utils.BUSY)) {
                 background.setBackgroundColor(Color.parseColor("#ffed1919"));
+                activity_level_bar.setProgress(activity_level);
                 avail_text.setText(Utils.BUSY_MESSAGE);
 
                 avail_text.setVisibility(View.VISIBLE);
+//                activity_level_picker.setValue(0);
             } else {
                 Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();
             }

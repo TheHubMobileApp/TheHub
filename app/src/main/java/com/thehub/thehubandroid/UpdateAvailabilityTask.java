@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,19 +97,25 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
         try {
             availability = new JSONObject(response);
             available = availability.getString("available");
+            activity_level = availability.getString("activity_level");
 
             // Update view accordingly
             TextView avail_text = (TextView) activity.findViewById(R.id.availText);
+            SeekBar activity_level_slider = (SeekBar) activity.findViewById(R.id.activity_level);
             RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
+
             if(available.equals(Utils.FREE)) {
                 background.setBackgroundColor(Color.parseColor("#05800B"));
+                activity_level_slider.setProgress(Integer.parseInt(activity_level));
                 avail_text.setText(Utils.FREE_MESSAGE);
             } else if(available.equals(Utils.BUSY)) {
                 background.setBackgroundColor(Color.parseColor("#ed1919"));
+                activity_level_slider.setProgress(0);
                 avail_text.setText(Utils.BUSY_MESSAGE);
             } else {
                 Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();
             }
+            Toast.makeText(context, "Updated!", Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
