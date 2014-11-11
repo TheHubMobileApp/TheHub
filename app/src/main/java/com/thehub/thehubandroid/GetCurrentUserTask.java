@@ -103,25 +103,29 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
 
             String expite_text = Utils.EXPIRE_ROOT_TEXT;
             // TODO: this should be a utils method
-            if(expire_hrs != "-1") {
-                // set hidden inputs
-                hrs.setText(expire_hrs);
+            if(expire_hrs.equals("-1") && expire_min.equals("-1")) {
+                expire_button.setText(Utils.NO_EXPIRE_TEXT);
+            } else {
+                if(!expire_hrs.equals("-1")) {
+                    // set hidden inputs
+                    hrs.setText(expire_hrs);
 
-                expite_text += expire_hrs;
-                if(expire_hrs == "1") {
-                    expite_text += " hour ";
-                } else {
-                    expite_text += " hours ";
+                    expite_text += expire_hrs;
+                    if(expire_hrs == "1") {
+                        expite_text += " hour ";
+                    } else {
+                        expite_text += " hours ";
+                    }
                 }
-            }
-            if(expire_min != "0") {
-                // set hidden inputs
-                min.setText(expire_min);
+                if(!expire_min.equals("-1")) {
+                    // set hidden inputs
+                    min.setText(expire_min);
 
-                expite_text += expire_min;
-                expite_text += " min";
+                    expite_text += expire_min;
+                    expite_text += " min";
+                }
+                expire_button.setText(expite_text);
             }
-            expire_button.setText(expite_text);
 
             if(available.equals(Utils.FREE)) {
                 avail_text.setText(Utils.FREE_MESSAGE);

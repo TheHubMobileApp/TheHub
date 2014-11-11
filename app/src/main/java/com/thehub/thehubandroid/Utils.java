@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 public class Utils {
     public static final int NUM_TABS = 2;
     public static final String EXPIRE_ROOT_TEXT = "Exp: ";
+    public static final String NO_EXPIRE_TEXT = "No Expire Set";
     public static final String DEBUG_TAG = "Debug";
     public static final String PREFS_FILE = "com.thehub.thehubandroid.prefs";
 

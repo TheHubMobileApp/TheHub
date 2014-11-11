@@ -112,7 +112,8 @@ public class EditAvailActivity extends Activity {
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
                     User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "0", "0");
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
-                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level, exp_hrs, exp_min);
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level,
+                            hrs.getText().toString(), min.getText().toString());
                 }
             }
         });
@@ -121,7 +122,7 @@ public class EditAvailActivity extends Activity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String expite_text = Utils.EXPIRE_ROOT_TEXT;
-                String default_exp_text = "No Expire Set";
+                String default_exp_text = Utils.NO_EXPIRE_TEXT;
                 exp_hrs = Integer.toString(hourOfDay);
                 exp_min = Integer.toString(minute);
 

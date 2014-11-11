@@ -60,7 +60,6 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             exp_hrs = params[5];
             exp_min = params[6];
 
-
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost request = new HttpPost(url);
             List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
@@ -121,7 +120,10 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             } else {
                 Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();
             }
-            Toast.makeText(context, "Updated!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Updated successfully!", Toast.LENGTH_SHORT).show();
+
+            // Go back to other screen
+            activity.finish();
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
