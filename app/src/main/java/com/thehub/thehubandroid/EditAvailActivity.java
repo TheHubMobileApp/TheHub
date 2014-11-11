@@ -9,14 +9,17 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 public class EditAvailActivity extends Activity {
     private Context context;
-    private RelativeLayout background;
-    private TextView avail_text_view;
+    private RelativeLayout background, avail_settings;
+    private Button expire_button, update_button;
+    private TextView avail_text_view, hrs, min;
     private String avail_text;
     private SeekBar activity_level_bar;
-    private String activity_level;
+    private String activity_level, exp_hrs, exp_min;
+    private CustomTimePickerDialog.OnTimeSetListener timeSetListener;
     final private String[] activity_strings = {
             // @robbie -> dave this is hilarious
         "Comatose",            // 0
@@ -42,8 +45,13 @@ public class EditAvailActivity extends Activity {
         User.getCurrentUser(context, this);
 
         background = (RelativeLayout) findViewById(R.id.editBackground);
-        Button update_button = (Button) findViewById(R.id.update_button);
+        avail_settings = (RelativeLayout) findViewById(R.id.availSettings);
+        update_button = (Button) findViewById(R.id.update_button);
+        expire_button = (Button) findViewById(R.id.expire_button);
         avail_text_view = (TextView) findViewById(R.id.availText);
+        // placeholders for hours and minutes
+        hrs = (TextView) findViewById(R.id.hrs);
+        min = (TextView) findViewById(R.id.min);
         // set the activity level bar's min and max values
         activity_level_bar = (SeekBar) findViewById(R.id.activity_level);
         // note: note a typo
@@ -80,10 +88,12 @@ public class EditAvailActivity extends Activity {
 
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
                     background.setBackgroundColor(Color.parseColor("#05800B"));
+                    avail_settings.setVisibility(View.VISIBLE);
                     avail_text_view.setText(Utils.FREE_MESSAGE);
 //                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level);
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
                     background.setBackgroundColor(Color.parseColor("#ed1919"));
+                    avail_settings.setVisibility(View.INVISIBLE);
                     avail_text_view.setText(Utils.BUSY_MESSAGE);
 //                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, activity_level);
                 } else{
@@ -100,13 +110,56 @@ public class EditAvailActivity extends Activity {
                 activity_level = Integer.toString(activity_level_bar.getProgress());
 
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
-                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0");
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "0", "0");
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
-                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level);
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level, exp_hrs, exp_min);
                 }
             }
         });
 
+        timeSetListener = new CustomTimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String expite_text = "Exp: ";
+                String default_exp_text = "No Expire Set";
+                exp_hrs = Integer.toString(hourOfDay);
+                exp_min = Integer.toString(minute);
+
+                // set hidden inputs
+                hrs.setText(exp_hrs);
+                min.setText(exp_min);
+
+                // Set to default text if set to 0:0 otherwise set the string
+                if(hourOfDay == 0 && minute == 0) {
+                    expire_button.setText(default_exp_text);
+                } else {
+                    if(hourOfDay != 0) {
+                        expite_text += Integer.toString(hourOfDay);
+                        if(hourOfDay == 1) {
+                            expite_text += " hour ";
+                        } else {
+                            expite_text += " hours ";
+                        }
+                    }
+                    if(minute != 0) {
+                        expite_text += Integer.toString(minute);
+                        expite_text += " min";
+                    }
+                    expire_button.setText(expite_text);
+                }
+            }
+        };
+
+        expire_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // makes sure to get the strings from hidden inputs to set time
+                CustomTimePickerDialog timePickerDialog = new CustomTimePickerDialog(
+                        EditAvailActivity.this, timeSetListener, Integer.parseInt(hrs.getText().toString()), Integer.parseInt(min.getText().toString()), true);
+                timePickerDialog.setTitle("Set expire time or leave empty");
+                timePickerDialog.show();
+            }
+        });
 
     }
 }

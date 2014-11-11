@@ -1,76 +1,112 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editBackground"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:background="#000"
-    android:id="@+id/editBackground">
-
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/availText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textColor="#EEE"
         android:textSize="25sp"
-        android:id="@+id/availText"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
+        android:layout_above="@+id/availSettings"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:textColor="#EEE"
-        android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
         android:text="TAP TO CHANGE"
-        android:id="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="35sp"
         android:textColor="#EEE"
-        android:textStyle="bold"
-        android:text="Activity Level"
-        android:id="@+id/activity_text"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
-    <SeekBar
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_level"
-        android:layout_alignTop="@+id/progress"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
+    <!-- Used to center the view -->
+    <RelativeLayout
+        android:id="@+id/availSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progress"
-        android:layout_below="@+id/activity_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="A little adventurous"
-        android:textSize="20sp"
-        android:textColor="#EEE" />
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/activity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="55dp"
+            android:text="Activity Level"
+            android:textColor="#EEE"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/activity_level"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/progress"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="A little adventurous"
+            android:textColor="#EEE"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/expire_button"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/activity_level"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="#958687"
+            android:text="No Expire Set"
+            android:textColor="#EEE"
+            android:textSize="20sp" />
+
+        <!-- Placeholders for expire -->
+        <TextView
+            android:id="@+id/hrs"
+            android:text="0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/min"
+            android:text="0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+        <!-- End Placeholders for expire -->
+
+
+    </RelativeLayout>
+
 
     <Button
+        android:id="@+id/update_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:id="@+id/update_button"
-        android:text="Update Availability"
-        android:textSize="25sp"
-        android:textColor="#EEE"
-        android:background="#958687"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        />
+        android:background="#958687"
+        android:text="Update Availability"
+        android:textColor="#EEE"
+        android:textSize="25sp" />
 
 
 </RelativeLayout>

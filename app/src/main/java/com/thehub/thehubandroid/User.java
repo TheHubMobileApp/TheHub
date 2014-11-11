@@ -19,11 +19,13 @@ public class User {
     }
 
     // TODO: add in an expire for the status
-    // TODO: add in an activity level (int or string but most be string to send to db... its weird)
-    public static void updateAvailability(Context context, Activity activity, String available, String activity_level) {
+    // TODO: add in an activity level (int or string but must be string to send to db... its weird)
+    public static void updateAvailability(Context context, Activity activity, String available,
+                                          String activity_level, String exp_hrs, String exp_min) {
         String url = Utils.IP_PROD + "/user/update";
 
-        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE,
+                Context.MODE_MULTI_PROCESS);
 
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
@@ -32,7 +34,8 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey, akey, activity_level});
+        new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey,
+                akey, activity_level, exp_hrs, exp_min});
     }
 
     public static void getFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {

@@ -33,6 +33,8 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
     private String akey;
     private Activity activity;
     private String activity_level;
+    private String exp_hrs;
+    private String exp_min;
 
     public UpdateAvailabilityTask(Context context, Activity activity) {
         this.context = context;
@@ -46,8 +48,8 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
         String result = "fail";
 
         /**
-         *   0       1        2    3            4
-         * {url, available, ukey, akey, activity_level}
+         *   0       1        2    3            4           5       6
+         * {url, available, ukey, akey, activity_level, exp_hrs, exp_min}
          */
         try {
             // Get info from params
@@ -55,6 +57,8 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             ukey = params[2];
             akey = params[3];
             activity_level = params[4];
+            exp_hrs = params[5];
+            exp_min = params[6];
 
 
             HttpClient httpClient = new DefaultHttpClient();
@@ -64,6 +68,8 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             // Add post params
             postParameters.add(new BasicNameValuePair("available", available));
             postParameters.add(new BasicNameValuePair("activity_level", activity_level));
+            postParameters.add(new BasicNameValuePair("expire_hrs", exp_hrs));
+            postParameters.add(new BasicNameValuePair("expire_min", exp_min));
 
             // set header
             String source = ukey + ":" + akey;
