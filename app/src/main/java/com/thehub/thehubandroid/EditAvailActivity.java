@@ -49,7 +49,7 @@ public class EditAvailActivity extends Activity {
         update_button = (Button) findViewById(R.id.update_button);
         expire_button = (Button) findViewById(R.id.expire_button);
         avail_text_view = (TextView) findViewById(R.id.availText);
-        // placeholders for hours and minutes
+        // hidden inputs for hours and minutes
         hrs = (TextView) findViewById(R.id.hrs);
         min = (TextView) findViewById(R.id.min);
         // set the activity level bar's min and max values
@@ -120,7 +120,7 @@ public class EditAvailActivity extends Activity {
         timeSetListener = new CustomTimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String expite_text = "Exp: ";
+                String expite_text = Utils.EXPIRE_ROOT_TEXT;
                 String default_exp_text = "No Expire Set";
                 exp_hrs = Integer.toString(hourOfDay);
                 exp_min = Integer.toString(minute);

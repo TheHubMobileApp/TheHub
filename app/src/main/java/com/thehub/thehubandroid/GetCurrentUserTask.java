@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -87,10 +88,40 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
             availability = user.getJSONObject("availability");
             String available = availability.getString("available");
             int activity_level = availability.getInt("activity_level");
+            String expire_hrs = availability.getString("expire_hrs");
+            String expire_min = availability.getString("expire_min");
 
             TextView avail_text = (TextView) activity.findViewById(R.id.availText);
             SeekBar activity_level_bar = (SeekBar) activity.findViewById(R.id.activity_level);
             RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
+            RelativeLayout avail_settings = (RelativeLayout) activity.findViewById(R.id.availSettings);
+            Button expire_button = (Button) activity.findViewById(R.id.expire_button);
+
+            // hidden inputs for hours and minutes
+            TextView hrs = (TextView) activity.findViewById(R.id.hrs);
+            TextView min = (TextView) activity.findViewById(R.id.min);
+
+            String expite_text = Utils.EXPIRE_ROOT_TEXT;
+            // TODO: this should be a utils method
+            if(expire_hrs != "-1") {
+                // set hidden inputs
+                hrs.setText(expire_hrs);
+
+                expite_text += expire_hrs;
+                if(expire_hrs == "1") {
+                    expite_text += " hour ";
+                } else {
+                    expite_text += " hours ";
+                }
+            }
+            if(expire_min != "0") {
+                // set hidden inputs
+                min.setText(expire_min);
+
+                expite_text += expire_min;
+                expite_text += " min";
+            }
+            expire_button.setText(expite_text);
 
             if(available.equals(Utils.FREE)) {
                 avail_text.setText(Utils.FREE_MESSAGE);
@@ -102,7 +133,7 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
                 background.setBackgroundColor(Color.parseColor("#ffed1919"));
                 activity_level_bar.setProgress(activity_level);
                 avail_text.setText(Utils.BUSY_MESSAGE);
-
+                avail_settings.setVisibility(View.INVISIBLE);
                 avail_text.setVisibility(View.VISIBLE);
 //                activity_level_picker.setValue(0);
             } else {
