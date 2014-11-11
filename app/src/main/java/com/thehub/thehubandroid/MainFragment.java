@@ -136,7 +136,7 @@ public class MainFragment extends Fragment {
                 Log.e("FACEBOOK ERROR", "Error " + error.getMessage());
             }
         });
-        authButton.setPublishPermissions(Arrays.asList("user_friends"));
+        authButton.setPublishPermissions(Arrays.asList("user_friends", "email"));
         authButton.setFragment(this);
 
         return rootView;
