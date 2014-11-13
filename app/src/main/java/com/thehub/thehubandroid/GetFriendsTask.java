@@ -100,6 +100,7 @@ public class GetFriendsTask extends AsyncTask<String, Void, String> {
                     userMap.put("availability", avail.getString("available"));
                     userMap.put("display_name", user.getString("display_name"));
                     userMap.put("picture_url", user.getString("picture_url"));
+                    userMap.put("ukey", user.getString("ukey"));
 
 //                    Log.i("DEBUG", "Picture url into map = " + user.getString("picture_url"));
                 } catch (JSONException e) {

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,8 +22,6 @@ public class FriendsListView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        context = getApplicationContext();
-
         // enable menu at bottom
         setHasOptionsMenu(true);
 
@@ -32,6 +31,33 @@ public class FriendsListView extends Fragment {
 
         // get listview
         listView = (ListView) rootView.findViewById(R.id.listView);
+
+        //short press is to view the spot (SpotPage.java)
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
+                Bundle bundleData = new Bundle();
+                //Toast.makeText(getActivity().getApplicationContext(), "size = " +  SpotsArray.size(), Toast.LENGTH_SHORT).show();
+
+//                HashMap<String, String> user = usersArray.get(position);
+//
+//                String spot_id = user.get("id");
+//                String url = user.get("photo");
+//                String overall = user.get("overall");
+//                String bust = user.get("bust");
+//                String difficulty = user.get("difficulty");
+//
+//                bundleData.putString("spot_id", spot_id);
+//                bundleData.putString("url", url);
+//                bundleData.putString("overall", overall);
+//
+//                Intent intent = new Intent(getActivity().getApplicationContext(),
+//                        SpotPage.class);
+//
+//                intent.putExtras(bundleData);
+//                startActivity(intent);
+            }
+        });
 
         // Create empty array (will update it later)
         usersArray = new ArrayList<HashMap<String, String>>();

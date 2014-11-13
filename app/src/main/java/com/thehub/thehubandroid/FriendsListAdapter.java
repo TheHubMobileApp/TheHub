@@ -24,6 +24,7 @@ public class FriendsListAdapter extends BaseAdapter {
     static class ViewHolder {
         ImageView profile_picture;
         TextView display_name;
+        TextView ukey;
     }
 
 //    public class CustomComparator implements Comparator<HashMap<String, String>> {
@@ -72,6 +73,7 @@ public class FriendsListAdapter extends BaseAdapter {
 
         vh.profile_picture = (ImageView) v.findViewById(R.id.profPic);
         vh.display_name = (TextView) v.findViewById(R.id.displayName);
+        vh.ukey = (TextView) v.findViewById(R.id.ukey);
 
         // Convert the dp value for xml to pixels (casted to int from float)
         int size = Utils.convertDpToPixel(100, context);
@@ -86,6 +88,7 @@ public class FriendsListAdapter extends BaseAdapter {
                 .into(vh.profile_picture);
 
         vh.display_name.setText(user.get("display_name"));
+        vh.ukey.setText(user.get("ukey"));
 
         return v;
     }
