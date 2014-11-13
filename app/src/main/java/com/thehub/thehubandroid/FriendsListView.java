@@ -3,6 +3,7 @@ package com.thehub.thehubandroid;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,11 +33,24 @@ public class FriendsListView extends Fragment {
         // get listview
         listView = (ListView) rootView.findViewById(R.id.listView);
 
+        // Create empty array (will update it later)
+        usersArray = new ArrayList<HashMap<String, String>>();
+
+        // populate spots array (no ProgressDialog since there is one for the map)
+        User.getFriends(context, listView, usersArray);
+
         //short press is to view the spot (SpotPage.java)
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
                 Bundle bundleData = new Bundle();
+
+                HashMap<String, String> user = usersArray.get(position);
+                String ukey = user.get("ukey");
+
+                Log.i("DEBUG", "ukey = " + ukey);
+
+                User.inviteFriendToHang(context, ukey, "invite to hang");
                 //Toast.makeText(getActivity().getApplicationContext(), "size = " +  SpotsArray.size(), Toast.LENGTH_SHORT).show();
 
 //                HashMap<String, String> user = usersArray.get(position);
@@ -59,24 +73,17 @@ public class FriendsListView extends Fragment {
             }
         });
 
-        // Create empty array (will update it later)
-        usersArray = new ArrayList<HashMap<String, String>>();
-
-        // populate spots array (no ProgressDialog since there is one for the map)
-        User.getFriends(context, listView, usersArray);
-
-
         return rootView;
     }
 
     public void onResume() {
-		super.onResume();
+        super.onResume();
 
         // Create empty array (will update it later)
         usersArray = new ArrayList<HashMap<String, String>>();
 
         // populate spots array (no ProgressDialog since there is one for the map)
         User.getFriends(context, listView, usersArray);
-	}
+    }
 
 }

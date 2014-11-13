@@ -3,7 +3,6 @@ package com.thehub.thehubandroid;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -106,8 +105,8 @@ public class GetFriendsTask extends AsyncTask<String, Void, String> {
                 } catch (JSONException e) {
                     //Toast.makeText(context, "OOPS, JSON PROBLEM from map", Toast.LENGTH_LONG).show();
                 }
-                Log.i("DEBUG", userMap.toString());
-                Log.i("DEBUG", usersArray.toString());
+//                Log.i("DEBUG", userMap.toString());
+//                Log.i("DEBUG", usersArray.toString());
                 usersArray.add(userMap);
             }
         } catch (JSONException e) {
