@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -18,7 +19,8 @@ public class EditAvailActivity extends Activity {
     private TextView avail_text_view, hrs, min;
     private String avail_text;
     private SeekBar activity_level_bar;
-    private String activity_level, exp_hrs, exp_min;
+    private String activity_level, activity_name, exp_hrs, exp_min;
+    private EditText activity_name_field;
     private CustomTimePickerDialog.OnTimeSetListener timeSetListener;
     final private String[] activity_strings = {
             // @robbie -> dave this is hilarious
@@ -49,6 +51,8 @@ public class EditAvailActivity extends Activity {
         update_button = (Button) findViewById(R.id.update_button);
         expire_button = (Button) findViewById(R.id.expire_button);
         avail_text_view = (TextView) findViewById(R.id.availText);
+        activity_name_field = (EditText) findViewById(R.id.activity_name);
+
         // hidden inputs for hours and minutes
         hrs = (TextView) findViewById(R.id.hrs);
         min = (TextView) findViewById(R.id.min);
@@ -108,11 +112,12 @@ public class EditAvailActivity extends Activity {
             public void onClick(View v) {
                 avail_text = avail_text_view.getText().toString();
                 activity_level = Integer.toString(activity_level_bar.getProgress());
+                activity_name = activity_name_field.getText().toString();
 
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
-                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "0", "0");
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "", "0", "0");
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
-                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level,
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level, activity_name,
                             hrs.getText().toString(), min.getText().toString());
                 }
             }

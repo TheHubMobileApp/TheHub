@@ -43,7 +43,7 @@ public class User {
     // TODO: add in an expire for the status
     // TODO: add in an activity level (int or string but must be string to send to db... its weird)
     public static void updateAvailability(Context context, Activity activity, String available,
-                                          String activity_level, String exp_hrs, String exp_min) {
+                                          String activity_level, String activity_name, String exp_hrs, String exp_min) {
         String url = base_url + "/user/update";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE,
@@ -57,7 +57,7 @@ public class User {
         }
 
         new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey,
-                akey, activity_level, exp_hrs, exp_min});
+                akey, activity_level, activity_name, exp_hrs, exp_min});
     }
 
     public static void getFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
