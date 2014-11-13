@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class User {
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
-        String url = Utils.IP_PROD + "/login/facebook";
+        String url = Utils.DAVIDS_IP_AT_ROBBIES + "/login/facebook";
         String expire_string = Integer.toString(expire);
 
         new FacebookLoginTask(context).execute(new String[]{url, user_id, access_token, expire_string});
@@ -21,8 +21,8 @@ public class User {
     // TODO: add in an expire for the status
     // TODO: add in an activity level (int or string but must be string to send to db... its weird)
     public static void updateAvailability(Context context, Activity activity, String available,
-                                          String activity_level, String exp_hrs, String exp_min) {
-        String url = Utils.IP_PROD + "/user/update";
+                                          String activity_level, String activity_name, String exp_hrs, String exp_min) {
+        String url = Utils.DAVIDS_IP_AT_ROBBIES + "/user/update";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE,
                 Context.MODE_MULTI_PROCESS);
@@ -35,11 +35,11 @@ public class User {
         }
 
         new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey,
-                akey, activity_level, exp_hrs, exp_min});
+                akey, activity_level, activity_name, exp_hrs, exp_min});
     }
 
     public static void getFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
-        String url = Utils.IP_PROD + "/all_users";
+        String url = Utils.DAVIDS_IP_AT_ROBBIES + "/all_users";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
 
@@ -54,7 +54,7 @@ public class User {
     }
 
     public static void getFacebookFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
-        String url = Utils.IP_PROD + "/invite_friends";
+        String url = Utils.DAVIDS_IP_AT_ROBBIES + "/invite_friends";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
 
@@ -69,7 +69,7 @@ public class User {
     }
 
     public static void getCurrentUser(Context context, Activity activity) {
-        String url = Utils.IP_PROD + "/me";
+        String url = Utils.DAVIDS_IP_AT_ROBBIES + "/me";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
 
