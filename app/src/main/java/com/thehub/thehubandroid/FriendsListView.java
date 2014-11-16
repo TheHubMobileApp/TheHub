@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -50,7 +51,15 @@ public class FriendsListView extends Fragment {
 
                 Log.i("DEBUG", "ukey = " + ukey);
 
-                User.inviteFriendToHang(context, ukey, "invite to hang");
+                Button invite_button = (Button) view.findViewById(R.id.inviteFriendButton);
+                // TODO: Only show invite button if they are available
+                if(invite_button.getVisibility() == View.GONE) {
+                    invite_button.setVisibility(View.VISIBLE);
+                } else {
+                    invite_button.setVisibility(View.GONE);
+                }
+
+//                User.inviteFriendToHang(context, ukey, "invite to hang");
                 //Toast.makeText(getActivity().getApplicationContext(), "size = " +  SpotsArray.size(), Toast.LENGTH_SHORT).show();
 
 //                HashMap<String, String> user = usersArray.get(position);

@@ -29,6 +29,23 @@
             android:textColor="#FFF"
             android:textSize="25sp" />
 
+        <Button
+            android:focusable="false"
+            android:visibility="gone"
+            android:id="@+id/inviteFriendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/displayName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Invite to Hang"
+            android:textColor="#000"
+            android:background="#eee"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp" />
+
         <!--<Button-->
             <!--android:layout_marginTop="5dp"-->
             <!--android:id="@+id/hangoutButton"-->

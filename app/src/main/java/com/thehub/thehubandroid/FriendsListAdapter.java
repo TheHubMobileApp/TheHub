@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -47,7 +49,7 @@ public class FriendsListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder vh = null;
-        HashMap<String, String> user = users.get(position);
+        final HashMap<String, String> user = users.get(position);
         String availability = user.get("availability");
 
         if (v == null) {
@@ -55,6 +57,19 @@ public class FriendsListAdapter extends BaseAdapter {
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.user_list_item, null);
+
+            // Do something for invite button click... lol
+            // TODO: do something for real...
+            Button invite_button = (Button) v.findViewById(R.id.inviteFriendButton);
+            invite_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: need an activity to select those who are available right now
+                    Toast.makeText(context, "Invitation lol", Toast.LENGTH_SHORT).show();
+                                    User.inviteFriendToHang(context, user.get("ukey"), "new hangout");
+
+                }
+            });
 
             if(availability.equals(Utils.FREE)) {
                 v.setBackgroundColor(Color.parseColor("#05800B"));
