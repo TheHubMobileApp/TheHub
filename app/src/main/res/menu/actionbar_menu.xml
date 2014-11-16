@@ -7,5 +7,9 @@
         android:id="@+id/action_settings"
         android:title="@string/change_status"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_new_hangout"
+        android:title="New Hangout"
+        app:showAsAction="never" />
 
 </menu>

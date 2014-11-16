@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,14 +44,17 @@ public class HangoutListAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.hangout_list_ietm, null);
 
-//            if(availability.equals(Utils.FREE)) {
-//                v.setBackgroundColor(Color.parseColor("#05800B"));
-//            } else if (availability.equals(Utils.BUSY)) {
-//                v.setBackgroundColor(Color.parseColor("#ed1919"));
-//            } else {
-//                // TODO: Remove this?
-//                Log.i("DEBUG", "Illegal availability");
-//            }
+            // Do something for invite button click... lol
+            // TODO: do something for real...
+            Button invite_button = (Button) v.findViewById(R.id.inviteUsersButton);
+            invite_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: need an activity to select those who are available right now
+                    Toast.makeText(context, "Invitation lol", Toast.LENGTH_SHORT).show();
+                }
+            });
+
             vh = new ViewHolder();
 
             v.setTag(vh);
