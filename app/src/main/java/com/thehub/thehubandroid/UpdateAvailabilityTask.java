@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
     private String akey;
     private Activity activity;
     private String activity_level;
+    private String activity_name;
     private String exp_hrs;
     private String exp_min;
 
@@ -48,8 +51,8 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
         String result = "fail";
 
         /**
-         *   0       1        2    3            4           5       6
-         * {url, available, ukey, akey, activity_level, exp_hrs, exp_min}
+         *   0       1        2    3            4           5              6       7
+         * {url, available, ukey, akey, activity_level, activity_name, exp_hrs, exp_min}
          */
         try {
             // Get info from params
@@ -57,8 +60,9 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             ukey = params[2];
             akey = params[3];
             activity_level = params[4];
-            exp_hrs = params[5];
-            exp_min = params[6];
+            activity_name = params[5];
+            exp_hrs = params[6];
+            exp_min = params[7];
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost request = new HttpPost(url);
@@ -67,6 +71,7 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             // Add post params
             postParameters.add(new BasicNameValuePair("available", available));
             postParameters.add(new BasicNameValuePair("activity_level", activity_level));
+            postParameters.add(new BasicNameValuePair("activity_name", activity_name));
             postParameters.add(new BasicNameValuePair("expire_hrs", exp_hrs));
             postParameters.add(new BasicNameValuePair("expire_min", exp_min));
 
@@ -95,27 +100,33 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String response) {
-//		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
+//		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_LONG)
 //				.show();
+        Log.i("DEBUG", response);
 
         JSONObject availability;
         try {
             availability = new JSONObject(response);
             available = availability.getString("available");
             activity_level = availability.getString("activity_level");
+            activity_name = availability.getString("activity_name");
 
             // Update view accordingly
             TextView avail_text = (TextView) activity.findViewById(R.id.availText);
+            EditText activity_name_field = (EditText) activity.findViewById(R.id.activity_name);
             SeekBar activity_level_slider = (SeekBar) activity.findViewById(R.id.activity_level);
             RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
 
             if(available.equals(Utils.FREE)) {
                 background.setBackgroundColor(Color.parseColor("#05800B"));
                 activity_level_slider.setProgress(Integer.parseInt(activity_level));
+                activity_name_field.setText(activity_name);
                 avail_text.setText(Utils.FREE_MESSAGE);
             } else if(available.equals(Utils.BUSY)) {
                 background.setBackgroundColor(Color.parseColor("#ed1919"));
                 activity_level_slider.setProgress(0);
+//              TODO: not sure if this is necessary
+                activity_name_field.setText("");
                 avail_text.setText(Utils.BUSY_MESSAGE);
             } else {
                 Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();
