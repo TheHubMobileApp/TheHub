@@ -38,6 +38,8 @@ public class ActionActivity extends ActionBarActivity {
                 FriendsListView.class, null);
         mTabsAdapter.addTab(actionBar.newTab().setText("Invite"),
                 InviteFriendsListView.class, null);
+        mTabsAdapter.addTab(actionBar.newTab().setText("Hangouts"),
+                HangoutListView.class, null);
 
         if (savedInstanceState != null) {
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));

@@ -86,6 +86,9 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
 		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
 				.show();
+
+        // Open new activity with hangout info
+
 //        JSONObject availability;
 //        try {
 //            availability = new JSONObject(response);

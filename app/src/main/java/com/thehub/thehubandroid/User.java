@@ -75,6 +75,21 @@ public class User {
         new GetFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
 
+    public static void getHangouts(Context context, ListView listView, ArrayList<HashMap<String, String>> hangoutsArray) {
+        String url = base_url + "/my_hangouts";
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("") || akey.equals("")){
+            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new GetHangoutsTask(context, listView, hangoutsArray).execute(new String[]{url, ukey, akey});
+    }
+
     public static void getFacebookFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
         String url = base_url + "/invite_friends";
 
