@@ -97,6 +97,8 @@ public class GetFriendsTask extends AsyncTask<String, Void, String> {
                     JSONObject avail = user.getJSONObject("availability");
 
                     userMap.put("availability", avail.getString("available"));
+                    userMap.put("activity_level", avail.getString("activity_level"));
+                    userMap.put("activity_name", avail.getString("activity_name"));
                     userMap.put("display_name", user.getString("display_name"));
                     userMap.put("picture_url", user.getString("picture_url"));
                     userMap.put("ukey", user.getString("ukey"));

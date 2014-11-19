@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,9 @@ public class FriendsListAdapter extends BaseAdapter {
         ViewHolder vh = null;
         final HashMap<String, String> user = users.get(position);
         String availability = user.get("availability");
+//      activity_level stores either the activity_name or the activity_level
+        String activity_level = user.get("activity_level");
+        String activity_name = user.get("activity_name");
 
         if (v == null) {
             //Toast.makeText(context, "Populating... " + spot.get("name"), Toast.LENGTH_LONG).show();
@@ -61,6 +65,7 @@ public class FriendsListAdapter extends BaseAdapter {
             // Do something for invite button click... lol
             // TODO: do something for real...
             Button invite_button = (Button) v.findViewById(R.id.inviteFriendButton);
+            TextView activity_level_view = (TextView) v.findViewById(R.id.activityLevel);
             invite_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,6 +78,11 @@ public class FriendsListAdapter extends BaseAdapter {
 
             if(availability.equals(Utils.FREE)) {
                 v.setBackgroundColor(Color.parseColor("#05800B"));
+                if (activity_name.equals("")) {
+                    activity_level_view.setText("is at a " + activity_level + " out of 10");
+                } else {
+                    activity_level_view.setText("is " + activity_name);
+                }
             } else if (availability.equals(Utils.BUSY)) {
                 v.setBackgroundColor(Color.parseColor("#ed1919"));
             } else {
