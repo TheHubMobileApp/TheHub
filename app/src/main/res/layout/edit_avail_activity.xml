@@ -74,16 +74,16 @@
             android:hint="Activity Name" />
 
         <Button
-            android:id="@+id/expire_button"
+            android:id="@+id/update_button"
             android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:background="#958687"
             android:layout_below="@+id/activity_level"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="90dp"
-            android:background="#958687"
-            android:text="No Expire Set"
+            android:text="Update Activity Level"
             android:textColor="#EEE"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <!-- Placeholders for expire -->
         <TextView
@@ -99,23 +99,24 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="gone"/>
+
         <!-- End Placeholders for expire -->
 
 
     </RelativeLayout>
 
-
     <Button
-        android:id="@+id/update_button"
+        android:id="@+id/expire_button"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:background="#958687"
-        android:text="Update Availability"
+        android:text="No Expire Set"
         android:textColor="#EEE"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
+
 
 
 </RelativeLayout>

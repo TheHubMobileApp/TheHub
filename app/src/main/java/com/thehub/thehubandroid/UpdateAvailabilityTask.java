@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
@@ -38,6 +39,7 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
     private String activity_name;
     private String exp_hrs;
     private String exp_min;
+    private Boolean finish_activiy;
 
     public UpdateAvailabilityTask(Context context, Activity activity) {
         this.context = context;
@@ -49,10 +51,11 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
         BufferedReader inBuffer = null;
         String url = params[0];
         String result = "fail";
+        Log.i("DEBUG", "made it to doInBackground");
 
         /**
-         *   0       1        2    3            4           5              6       7
-         * {url, available, ukey, akey, activity_level, activity_name, exp_hrs, exp_min}
+         *   0       1        2    3            4           5              6       7      8
+         * {url, available, ukey, akey, activity_level, activity_name, exp_hrs, exp_min, finish_activity(bool)}
          */
         try {
             // Get info from params
@@ -63,6 +66,8 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             activity_name = params[5];
             exp_hrs = params[6];
             exp_min = params[7];
+            finish_activiy = Boolean.parseBoolean(params[8]);
+            Log.i("DEBUG", "finish_activity == " + finish_activiy);
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost request = new HttpPost(url);
@@ -134,7 +139,9 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             Toast.makeText(context, "Updated successfully!", Toast.LENGTH_SHORT).show();
 
             // Go back to other screen
-            activity.finish();
+            if (finish_activiy) {
+                activity.finish();
+            }
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

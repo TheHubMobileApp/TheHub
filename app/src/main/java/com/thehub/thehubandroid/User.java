@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
-    static String base_url = Utils.IP_PROD;
+    static String base_url = Utils.DAVIDS_IP;
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
         String url = base_url + "/login/facebook";
@@ -41,9 +41,8 @@ public class User {
     }
 
     // TODO: add in an expire for the status
-    // TODO: add in an activity level (int or string but must be string to send to db... its weird)
     public static void updateAvailability(Context context, Activity activity, String available,
-                                          String activity_level, String activity_name, String exp_hrs, String exp_min) {
+                                          String activity_level, String activity_name, String exp_hrs, String exp_min, Boolean finish_activity) {
         String url = base_url + "/user/update";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE,
@@ -57,7 +56,7 @@ public class User {
         }
 
         new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey,
-                akey, activity_level, activity_name, exp_hrs, exp_min});
+                akey, activity_level, activity_name, exp_hrs, exp_min, Boolean.toString(finish_activity)});
     }
 
     public static void getFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
