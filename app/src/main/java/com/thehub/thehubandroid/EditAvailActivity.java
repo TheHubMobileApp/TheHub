@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class EditAvailActivity extends Activity {
     private Context context;
@@ -89,17 +90,18 @@ public class EditAvailActivity extends Activity {
             @Override
             public void onClick(View v) {
                 avail_text = avail_text_view.getText().toString();
+                Boolean finish_activity = false;
 
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
                     background.setBackgroundColor(Color.parseColor("#05800B"));
                     avail_settings.setVisibility(View.VISIBLE);
                     avail_text_view.setText(Utils.FREE_MESSAGE);
-//                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level);
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, "0", "", "0", "0", finish_activity);
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
                     background.setBackgroundColor(Color.parseColor("#ed1919"));
                     avail_settings.setVisibility(View.INVISIBLE);
                     avail_text_view.setText(Utils.BUSY_MESSAGE);
-//                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, activity_level);
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "", "0", "0", finish_activity);
                 } else{
                     // TODO: get rid of this
 //                    Toast.makeText(context, "illegal avail text: " + avail_text, Toast.LENGTH_SHORT).show();
@@ -113,12 +115,13 @@ public class EditAvailActivity extends Activity {
                 avail_text = avail_text_view.getText().toString();
                 activity_level = Integer.toString(activity_level_bar.getProgress());
                 activity_name = activity_name_field.getText().toString();
+                Boolean finish_activity = true;
 
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
-                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "", "0", "0");
+                    User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "", "0", "0", finish_activity);
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
                     User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, activity_level, activity_name,
-                            hrs.getText().toString(), min.getText().toString());
+                            hrs.getText().toString(), min.getText().toString(), finish_activity);
                 }
             }
         });
