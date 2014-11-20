@@ -46,7 +46,7 @@
             android:layout_below="@+id/numUsers"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="2dp"
-            android:text="Invite Friends"
+            android:text="View Info"
             android:textColor="#000"
             android:background="#eee"
             android:paddingLeft="10dp"

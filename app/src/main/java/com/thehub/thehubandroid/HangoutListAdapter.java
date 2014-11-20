@@ -2,13 +2,14 @@ package com.thehub.thehubandroid;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,7 @@ public class HangoutListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder vh = null;
-        HashMap<String, String> hangout = hangouts.get(position);
+        final HashMap<String, String> hangout = hangouts.get(position);
 
         if (v == null) {
             //Toast.makeText(context, "Populating... " + spot.get("name"), Toast.LENGTH_LONG).show();
@@ -50,8 +51,23 @@ public class HangoutListAdapter extends BaseAdapter {
             invite_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: need an activity to select those who are available right now
-                    Toast.makeText(context, "Invitation lol", Toast.LENGTH_SHORT).show();
+                    /*
+                     * TODO: need an activity to select those who are available right now
+                     * and are not in the given hangout V
+                    */
+
+                    Bundle bundleData = new Bundle();
+                    //Toast.makeText(getActivity().getApplicationContext(), "size = " +  SpotsArray.size(), Toast.LENGTH_SHORT).show();
+
+                    bundleData.putString("hkey", hangout.get("hkey"));
+
+                    Intent intent = new Intent(context, HangoutView.class);
+
+                    // needed to start an activity outside of another activity
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    intent.putExtras(bundleData);
+                    context.startActivity(intent);
                 }
             });
 

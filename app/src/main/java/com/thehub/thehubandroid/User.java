@@ -75,6 +75,21 @@ public class User {
         new GetFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
 
+    public static void getHangout(Context context, String hkey, Activity activity, ArrayList<HashMap<String, String>> usersArray) {
+        String url = base_url + "/hangouts/" + hkey;
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("") || akey.equals("")){
+            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new GetHangoutTask(context, activity, usersArray).execute(new String[]{url, ukey, akey});
+    }
+
     public static void getHangouts(Context context, ListView listView, ArrayList<HashMap<String, String>> hangoutsArray) {
         String url = base_url + "/my_hangouts";
 
