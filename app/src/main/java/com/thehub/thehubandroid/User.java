@@ -3,7 +3,6 @@ package com.thehub.thehubandroid;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
-    static String base_url = Utils.DAVIDS_IP;
+    static String base_url = Utils.IP_PROD;
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
         String url = base_url + "/login/facebook";
@@ -23,7 +22,6 @@ public class User {
     public static void inviteFriendToHang(Context context, String friend_ukey,
                                           String title) {
 
-        Log.i("DEBUG", "hang 1");
         String url = base_url + "/create_hangout";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE,

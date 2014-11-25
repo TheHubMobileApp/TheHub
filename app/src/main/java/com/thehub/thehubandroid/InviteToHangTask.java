@@ -1,10 +1,8 @@
 package com.thehub.thehubandroid;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
-import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -24,13 +22,11 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
     private Context context;
     private String ukey;
     private String akey;
-    private Activity activity;
     private String friends_ukey;
     private String title;
 
     public InviteToHangTask(Context context) {
         this.context = context;
-        this.activity = activity;
     }
 
     @Override
@@ -84,8 +80,10 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String response) {
-		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
-				.show();
+//		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_SHORT)
+//				.show();
+
+        // Todo: take me to the new hangout
 
         // Open new activity with hangout info
 

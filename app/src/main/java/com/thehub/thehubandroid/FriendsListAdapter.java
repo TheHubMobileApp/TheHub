@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,12 +70,11 @@ public class FriendsListAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     // TODO: need an activity to select those who are available right now
                     Toast.makeText(context, "Invitation lol", Toast.LENGTH_SHORT).show();
-                                    User.inviteFriendToHang(context, user.get("ukey"), "new hangout");
-
+                    User.inviteFriendToHang(context, user.get("ukey"), "new hangout");
                 }
             });
 
-            if(availability.equals(Utils.FREE)) {
+            if (availability.equals(Utils.FREE)) {
                 v.setBackgroundColor(Color.parseColor("#05800B"));
                 if (activity_name.equals("")) {
                     activity_level_view.setText("is at a " + activity_level + " out of 10");
