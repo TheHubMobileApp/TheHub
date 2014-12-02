@@ -49,7 +49,7 @@ public class ActionActivity extends ActionBarActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+        outState.putInt("tab", getSupportActionBar().getSelectedNavigationIndex());
     }
 
     /**
@@ -153,7 +153,7 @@ public class ActionActivity extends ActionBarActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_new_hangout:
-                Intent intent = new Intent(getApplicationContext(), EditAvailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NewHangoutActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_settings:

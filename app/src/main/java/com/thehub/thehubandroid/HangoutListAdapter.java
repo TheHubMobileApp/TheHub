@@ -43,7 +43,7 @@ public class HangoutListAdapter extends BaseAdapter {
             //Toast.makeText(context, "Populating... " + spot.get("name"), Toast.LENGTH_LONG).show();
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.hangout_list_ietm, null);
+            v = inflater.inflate(R.layout.hangout_list_item, null);
 
             // Do something for invite button click... lol
             // TODO: do something for real...

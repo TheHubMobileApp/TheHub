@@ -1,57 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thehub.thehubandroid" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.thehub.thehubandroid.MainActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait"
-            >
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--android:theme="@android:style/Theme.NoTitleBar"-->
-        <!--<activity-->
-            <!--android:theme="@style/AppTheme"-->
-            <!--android:name=".FriendsListView"-->
-            <!--android:label="Friends" >-->
-        <!--</activity>-->
-        <!--<activity-->
-            <!--android:theme="@style/AppTheme"-->
-            <!--android:name=".InviteFriendsListView"-->
-            <!--android:label="Invite Friends" >-->
-        <!--</activity>-->
+        <!-- android:theme="@android:style/Theme.NoTitleBar" -->
+        <!-- <activity -->
+        <!-- android:theme="@style/AppTheme" -->
+        <!-- android:name=".FriendsListView" -->
+        <!-- android:label="Friends" > -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:theme="@style/AppTheme" -->
+        <!-- android:name=".InviteFriendsListView" -->
+        <!-- android:label="Invite Friends" > -->
+        <!-- </activity> -->
         <activity
+            android:name="com.thehub.thehubandroid.ActionActivity"
+            android:label="The Hub"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:name=".ActionActivity"
-            android:label="The Hub" >
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
+            android:name="com.thehub.thehubandroid.EditAvailActivity"
+            android:label="Edit Availability"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
-            android:name=".EditAvailActivity"
-            android:label="Edit Availability" >
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar" >
         </activity>
         <activity
+            android:name="com.thehub.thehubandroid.HangoutView"
+            android:label="Hangout"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:name=".HangoutView"
-            android:label="Hangout" >
+            android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name="com.facebook.LoginActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/app_name" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+
+        <activity
+            android:name="com.thehub.thehubandroid.NewHangoutActivity"
+            android:label="@string/title_activity_new_hangout" >
+        </activity>
     </application>
 
 </manifest>

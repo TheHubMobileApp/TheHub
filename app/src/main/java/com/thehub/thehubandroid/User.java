@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
-    static String base_url = Utils.IP_PROD;
+    static String base_url = Utils.DAVIDS_IP;
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
         String url = base_url + "/login/facebook";
@@ -117,6 +117,22 @@ public class User {
         new GetFacebookFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
 
+    public static void getFreeFacebookFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
+        String url = base_url + "/free_friends";
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("") || akey.equals("")){
+            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new GetFreeFacebookFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
+
+    }
+
     public static void getCurrentUser(Context context, Activity activity) {
         String url = base_url + "/me";
 
@@ -129,6 +145,6 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new GetCurrentUserTask(context, activity).execute(new String[]{url, ukey, akey});
+        new GetCurrentUserTask(context, activity).execute(url, ukey, akey);
     }
 }

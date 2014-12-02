@@ -17,12 +17,6 @@ public class InviteFriendsListView extends Fragment {
     private View rootView;
     private ArrayList<HashMap<String, String>> friendsArray;
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.invite_list);
-//        context = getApplicationContext();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
