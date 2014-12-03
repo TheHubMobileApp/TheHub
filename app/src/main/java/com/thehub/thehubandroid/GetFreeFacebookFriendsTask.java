@@ -3,6 +3,7 @@ package com.thehub.thehubandroid;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
     private ListView listView;
     private String ukey;
     private String akey;
-    private HangoutFriendsListAdapter adapter;
+    private FriendsListAdapter adapter;
 
     public GetFreeFacebookFriendsTask(Context context, ListView listview, ArrayList<HashMap<String, String>> usersArray) {
         this.context = context;
@@ -83,8 +84,6 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
     }
 
     protected void onPostExecute(String response) {
-        Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_LONG).show();
-
         JSONObject resp;
         JSONArray usersJsonArray;
         JSONObject user;
@@ -95,9 +94,15 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
                 HashMap<String, String> userMap = new HashMap<String, String>();
                 try {
                     user = usersJsonArray.getJSONObject(i);
+                    JSONObject availability = new JSONObject(user.getString("availability"));
+                    Log.i("DEBUG", "Line 98 " + user.getString("availability"));
+
 
                     // busy users are not given in response so just go ahead and add them
                     userMap.put("display_name", user.getString("display_name"));
+                    userMap.put("availability", availability.toString());
+                    userMap.put("activity_level", availability.getString("activity_level"));
+                    userMap.put("activity_name", availability.getString("activity_name"));
                     userMap.put("picture_url", user.getString("picture_url"));
                     userMap.put("ukey", user.getString("ukey"));
 
@@ -109,10 +114,10 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error fetching friends list.\n", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
         }
 
-        // TODO: change this shite
-        adapter = new HangoutFriendsListAdapter(context, usersArray, R.layout.new_hangout_activity);
+        adapter = new FriendsListAdapter(context, usersArray, R.layout.new_hangout_activity);
         listView.setAdapter(adapter);
     }
 }
