@@ -2,24 +2,25 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#ff9d0700"
+    android:background="#FFF"
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <ImageView
+    <com.thehub.thehubandroid.CircleImageView
         android:id="@+id/profPic"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher"
+        />
 
     <TextView
         android:id="@+id/displayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Robbie Small"
-        android:textColor="#ffffffff"
+        android:textColor="#000"
         android:textSize="22sp"
+        android:layout_marginLeft="30dp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/profPic"
         android:layout_toEndOf="@+id/profPic" />

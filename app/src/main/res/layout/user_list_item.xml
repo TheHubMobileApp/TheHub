@@ -2,61 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#000"
+    android:background="#FFF"
     android:orientation="vertical"
     android:padding="10dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="55dp"
+        android:layout_height="58dp">
 
-        <ImageView
+        <com.thehub.thehubandroid.CircleImageView
             android:id="@+id/profPic"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_launcher" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher"
+            />
 
-        <TextView
-            android:id="@+id/displayName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="2dp"
-            android:layout_toEndOf="@+id/profPic"
-            android:layout_toRightOf="@+id/profPic"
-            android:text="Robbie Small"
-            android:textColor="#FFF"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/activityLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:textSize="20sp"
-            android:layout_alignLeft="@+id/displayName"
-            android:layout_alignStart="@+id/displayName"
-            android:layout_alignTop="@+id/displayName"
-            android:layout_marginTop="33dp"
-            android:layout_marginLeft="15dp"/>
-
-        <Button
-            android:focusable="false"
-            android:visibility="gone"
-            android:id="@+id/inviteFriendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/displayName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Invite to Hang"
-            android:textColor="#000"
-            android:background="#eee"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="20sp" />
 
         <!--<Button-->
             <!--android:layout_marginTop="5dp"-->
@@ -80,6 +40,53 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right|top">
+        <TextView
+            android:id="@+id/displayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Robbie Small"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/activityLevel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/displayName"
+            android:textColor="#343434"
+            android:textSize="15dip"
+            android:layout_marginTop="1dip"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:focusable="false"
+            android:visibility="gone"
+            android:id="@+id/inviteFriendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/displayName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Invite to Hang"
+            android:textColor="#000"
+            android:background="#757575"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp" />
+
+        </RelativeLayout>
     <!-- end holder -->
 
 

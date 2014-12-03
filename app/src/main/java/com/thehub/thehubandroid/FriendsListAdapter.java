@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -75,14 +74,18 @@ public class FriendsListAdapter extends BaseAdapter {
             });
 
             if (availability.equals(Utils.FREE)) {
-                v.setBackgroundColor(Color.parseColor("#05800B"));
+
+                //v.setBackgroundColor(Color.parseColor(#83FF83));
+                CircleImageView temp = (CircleImageView) v.findViewById(R.id.profPic);
+                temp.setBorderColor(Color.parseColor("#69F0AE"));
                 if (activity_name.equals("")) {
                     activity_level_view.setText("is at a " + activity_level + " out of 10");
                 } else {
                     activity_level_view.setText("is " + activity_name);
                 }
             } else if (availability.equals(Utils.BUSY)) {
-                v.setBackgroundColor(Color.parseColor("#ed1919"));
+                CircleImageView temp = (CircleImageView) v.findViewById(R.id.profPic);
+                temp.setBorderColor(Color.parseColor("#FF7043"));
             } else {
                 // TODO: Remove this?
                 Log.i("DEBUG", "Illegal availability");

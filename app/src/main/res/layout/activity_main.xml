@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000">
+    android:background="#B2EBF2">
 
     <ImageView
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/the_hub_logo" />
+        android:background="#00FFFFFF"
+        android:src="@drawable/hub_logo" />
 
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"
@@ -27,7 +28,7 @@
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:text="Proceed to App"
-        android:background="#ff9d0700"
+        android:background="#4DD0E1"
         android:textColor="#FFF"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"

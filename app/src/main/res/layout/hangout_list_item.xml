@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#000"
+    android:background="#FFF"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -24,7 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="2dp"
             android:text="Robbie Small"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:textSize="25sp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_below="@+id/title"
             android:layout_marginTop="2dp"
             android:text="2 users"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:textSize="20sp" />
 
         <Button
