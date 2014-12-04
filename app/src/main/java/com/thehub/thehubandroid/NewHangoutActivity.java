@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +20,7 @@ public class NewHangoutActivity extends ActionBarActivity {
     private ListView listView;
     private Context context;
     private ArrayList<HashMap<String, String>> freeFriendsArray;
+    private TextView ukeys;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,14 @@ public class NewHangoutActivity extends ActionBarActivity {
         setContentView(R.layout.new_hangout_activity);
         context = getApplicationContext();
         listView = (ListView) findViewById(R.id.listView);
+
+        // if a friend was invited to hang, figure how who that friend was and mark him as invited
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String friend_ukey = bundle.getString("friend_ukey");
+            TextView temp = (TextView) findViewById(R.id.ukeys);
+            temp.append(friend_ukey);
+        }
 
         // Create empty array (will update it later)
         freeFriendsArray = new ArrayList<HashMap<String, String>>();
@@ -38,8 +49,6 @@ public class NewHangoutActivity extends ActionBarActivity {
 
                 HashMap<String, String> user = freeFriendsArray.get(position);
                 String ukey = user.get("ukey");
-
-                Log.i("DEBUG", "ukey = " + ukey);
 
                 Button invite_button = (Button) view.findViewById(R.id.inviteFriendButton);
                 // TODO: Only show invite button if they are available

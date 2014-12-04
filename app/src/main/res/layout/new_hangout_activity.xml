@@ -13,6 +13,14 @@
         android:layout_height="0dp" />
     <!-- End holder for hkey -->
 
+    <!-- Holder for friends ukey's -->
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/ukeys"
+        android:text="" />
+    <!-- End holder for friends ukey's -->
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

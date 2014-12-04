@@ -32,7 +32,7 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
     private ListView listView;
     private String ukey;
     private String akey;
-    private FriendsListAdapter adapter;
+    private NewHangoutFriendAdapter adapter;
 
     public GetFreeFacebookFriendsTask(Context context, ListView listview, ArrayList<HashMap<String, String>> usersArray) {
         this.context = context;
@@ -117,7 +117,7 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
             Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
         }
 
-        adapter = new FriendsListAdapter(context, usersArray, R.layout.new_hangout_activity);
+        adapter = new NewHangoutFriendAdapter(context, usersArray, R.layout.new_hangout_activity);
         listView.setAdapter(adapter);
     }
 }

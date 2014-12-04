@@ -6,11 +6,12 @@ import android.content.SharedPreferences;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
-    static String base_url = Utils.IP_PROD;
+    static String base_url = Utils.DAVIDS_IP;
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
         String url = base_url + "/login/facebook";
@@ -19,7 +20,7 @@ public class User {
         new FacebookLoginTask(context).execute(new String[]{url, user_id, access_token, expire_string});
     }
 
-    public static void inviteFriendToHang(Context context, String friend_ukey,
+    public static void inviteFriendToHang(Context context, ArrayList<String> friend_ukeys,
                                           String title) {
 
         String url = base_url + "/create_hangout";
@@ -35,7 +36,7 @@ public class User {
         }
 
         new InviteToHangTask(context).execute(new String[]{url, ukey,
-                akey, friend_ukey, title});
+                akey, friend_ukeys, title});
     }
 
     // TODO: add in an expire for the status

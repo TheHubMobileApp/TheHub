@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.List;
 
-public class FriendsListAdapter extends BaseAdapter {
+public class NewHangoutFriendAdapter extends BaseAdapter {
 
     private Context context;
     private List<HashMap<String, String>> users;
@@ -38,7 +38,7 @@ public class FriendsListAdapter extends BaseAdapter {
 //        }
 //    }
 
-    public FriendsListAdapter(Context context, List<HashMap<String, String>> users, int resource) {
+    public NewHangoutFriendAdapter(Context context, List<HashMap<String, String>> users, int resource) {
         this.setContext(context);
 //        Collections.sort(spots, new CustomComparator());
         this.users = users;
@@ -46,10 +46,11 @@ public class FriendsListAdapter extends BaseAdapter {
 
     //public View newView(Context context, Cursor cursor, ViewGroup parent) {
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder vh = null;
         final HashMap<String, String> user = users.get(position);
+        final String ukey = user.get("ukey");
         String availability = user.get("availability");
 //      activity_level stores either the activity_name or the activity_level
         String activity_level = user.get("activity_level");
@@ -68,12 +69,16 @@ public class FriendsListAdapter extends BaseAdapter {
             invite_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: need an activity to select those who are available right now
-                    Intent intent = new Intent(context, NewHangoutActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("friend_ukey", user.get("ukey"));
-                    context.startActivity(intent);
-//                    User.inviteFriendToHang(context, user.get("ukey"), "new hangout");
+                    // add yourself to ukeys
+                    TextView textview = (TextView) v.findViewById(R.id.ukeys);
+                    assert(textview != null);
+                    assert(ukey != null);
+                    Log.i("DEBUG", "ukey == " + ukey);
+                    Log.i("DEBUG", "textview == " + textview.toString());
+                    textview.append(ukey);
+                    // remove this item
+                    users.remove(position);
+                    notifyDataSetChanged();
                 }
             });
 
