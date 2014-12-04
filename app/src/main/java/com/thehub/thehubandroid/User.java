@@ -131,4 +131,20 @@ public class User {
 
         new GetCurrentUserTask(context, activity).execute(new String[]{url, ukey, akey});
     }
+
+    public static void registerInBackground(Context context, String regID) {
+        String url = base_url + "/update_gcm";
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("") || akey.equals("")){
+            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new RegisterForGCMTask(context, regID).execute(new String[]{url, ukey, akey});
+
+    }
 }
