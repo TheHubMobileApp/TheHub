@@ -2,6 +2,7 @@ package com.thehub.thehubandroid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,17 +13,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ActionActivity extends ActionBarActivity {
     ViewPager mViewPager;
     TabsAdapter mTabsAdapter;
+    GoogleCloudMessaging gcm;
+    String regid;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.action_activity);
+        context = getApplicationContext();
 
         // For swipe
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -44,6 +53,70 @@ public class ActionActivity extends ActionBarActivity {
         if (savedInstanceState != null) {
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
         }
+
+        /**
+         * FOR GCM
+         */
+        // Check device for Play Services APK.
+        if (Utils.checkPlayServices(this)) {
+            // If this check succeeds, proceed with normal processing.
+            // Otherwise, prompt user to get valid Play Services APK.
+            gcm = GoogleCloudMessaging.getInstance(this);
+            regid = Utils.getRegistrationId(context);
+
+            if (regid.isEmpty()) {
+                Utils.registerInBackground();
+            }
+        } else {
+            Toast.makeText(context, "get gcm failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Registers the application with GCM servers asynchronously.
+     * <p>
+     * Stores the registration ID and app versionCode in the application's
+     * shared preferences.
+     */
+    private void registerInBackground() {
+        new AsyncTask<String, String, String>() {
+            @Override
+            protected String doInBackground(String... params) {
+                String msg = "";
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(context);
+                    }
+                    regid = gcm.register(Utils.SENDER_ID);
+                    msg = "Device registered, registration ID=" + regid;
+
+                    // You should send the registration ID to your server over HTTP,
+                    // so it can use GCM/HTTP or CCS to send messages to your app.
+                    // The request to your server should be authenticated if your app
+                    // is using accounts.
+                    sendRegistrationIdToBackend();
+
+                    // For this demo: we don't need to send it because the device
+                    // will send upstream messages to a server that echo back the
+                    // message using the 'from' address in the message.
+
+                    // Persist the regID - no need to register again.
+                    storeRegistrationId(context, regid);
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                    // If there is an error, don't just keep trying to register.
+                    // Require the user to click a button again, or perform
+                    // exponential back-off.
+                }
+                return msg;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                // Do something
+                mDisplay.append(msg + "\n");
+            }
+        }.execute(null, null, null);
     }
 
     @Override
@@ -172,5 +245,11 @@ public class ActionActivity extends ActionBarActivity {
         inflater.inflate(R.menu.actionbar_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Utils.checkPlayServices(this);
     }
 }
