@@ -1,6 +1,7 @@
 package com.thehub.thehubandroid;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,6 +23,7 @@ public class NewHangoutFriendAdapter extends BaseAdapter {
 
     private Context context;
     private List<HashMap<String, String>> users;
+    private Activity parent_activity;
 
     static class ViewHolder {
         ImageView profile_picture;
@@ -38,19 +40,19 @@ public class NewHangoutFriendAdapter extends BaseAdapter {
 //        }
 //    }
 
-    public NewHangoutFriendAdapter(Context context, List<HashMap<String, String>> users, int resource) {
+    public NewHangoutFriendAdapter(Context context, List<HashMap<String, String>> users, int resource, Activity parent_activity_) {
         this.setContext(context);
 //        Collections.sort(spots, new CustomComparator());
         this.users = users;
+        parent_activity = parent_activity_;
     }
 
     //public View newView(Context context, Cursor cursor, ViewGroup parent) {
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         View v = convertView;
         ViewHolder vh = null;
-        final HashMap<String, String> user = users.get(position);
-        final String ukey = user.get("ukey");
+        HashMap<String, String> user = users.get(position);
         String availability = user.get("availability");
 //      activity_level stores either the activity_name or the activity_level
         String activity_level = user.get("activity_level");
@@ -70,15 +72,14 @@ public class NewHangoutFriendAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     // add yourself to ukeys
-                    TextView textview = (TextView) v.findViewById(R.id.ukeys);
-                    assert(textview != null);
-                    assert(ukey != null);
-                    Log.i("DEBUG", "ukey == " + ukey);
-                    Log.i("DEBUG", "textview == " + textview.toString());
-                    textview.append(ukey);
+                    TextView textview = (TextView) parent_activity.findViewById(R.id.ukeys);
+                    HashMap<String, String> user = users.get(position);
+                    String ukey = user.get("ukey");
+                    textview.append(ukey + ",");
                     // remove this item
                     users.remove(position);
                     notifyDataSetChanged();
+                    Toast.makeText(context, "Friend invited!", Toast.LENGTH_SHORT).show();
                 }
             });
 

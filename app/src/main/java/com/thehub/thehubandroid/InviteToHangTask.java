@@ -22,11 +22,12 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
     private Context context;
     private String ukey;
     private String akey;
-    private String friends_ukey;
     private String title;
+    private ArrayList<String> friend_ukeys;
 
-    public InviteToHangTask(Context context) {
-        this.context = context;
+    public InviteToHangTask(Context context_, ArrayList<String> friend_ukeys_) {
+        context = context_;
+        friend_ukeys = friend_ukeys_;
     }
 
     @Override
@@ -36,22 +37,23 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
         String result = "fail";
 
         /**
-         *   0    1      2        3         4
-         * {url, ukey, akey, friends_ukey, title}
+         *   0    1      2      3
+         * {url, ukey, akey,  title}
          */
         try {
             // Get info from params
             ukey = params[1];
             akey = params[2];
-            friends_ukey = params[3];
-            title = params[4];
+            title = params[3];
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost request = new HttpPost(url);
             List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
 
             // Add post params
-            postParameters.add(new BasicNameValuePair("invite_ukey", friends_ukey));
+            for(String s : friend_ukeys) {
+                postParameters.add(new BasicNameValuePair("invite_ukey", s));
+            }
             postParameters.add(new BasicNameValuePair("title", title));
 
             // set header

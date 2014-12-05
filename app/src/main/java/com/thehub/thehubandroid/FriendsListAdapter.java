@@ -73,7 +73,6 @@ public class FriendsListAdapter extends BaseAdapter {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("friend_ukey", user.get("ukey"));
                     context.startActivity(intent);
-//                    User.inviteFriendToHang(context, user.get("ukey"), "new hangout");
                 }
             });
 

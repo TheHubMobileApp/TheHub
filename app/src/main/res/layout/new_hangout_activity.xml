@@ -30,14 +30,14 @@
         <EditText
             android:hint="Activity Name"
             android:layout_width="fill_parent"
-            android:id="@+id/title"
+            android:id="@+id/hangout_title"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_height="wrap_content" />
 
         <TextView
             android:layout_marginTop="2dp"
-            android:layout_below="@+id/title"
+            android:layout_below="@id/hangout_title"
             android:layout_width="wrap_content"
             android:id="@+id/numUsers"
             android:text="2 friends"
@@ -63,16 +63,15 @@
             android:id="@+id/listView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_above="@+id/createButton" />
+            android:layout_above="@+id/createHangoutButton" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:id="@+id/createButton"
+            android:id="@+id/createHangoutButton"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
-            android:text="Create Hangout"
-            android:onClick="createHangout" />
+            android:text="Create Hangout" />
 
     </RelativeLayout>
 

@@ -7,34 +7,46 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+
+;
 
 public class NewHangoutActivity extends ActionBarActivity {
     private ListView listView;
     private Context context;
     private ArrayList<HashMap<String, String>> freeFriendsArray;
-    private TextView ukeys;
+    private Button createHangoutButton;
+    private TextView ukeys_textview;
+    private String invited_ukey;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // remove the title bar
+        this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_hangout_activity);
         context = getApplicationContext();
         listView = (ListView) findViewById(R.id.listView);
+        createHangoutButton = (Button) findViewById(R.id.createHangoutButton);
+        invited_ukey = null;
 
         // if a friend was invited to hang, figure how who that friend was and mark him as invited
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String friend_ukey = bundle.getString("friend_ukey");
-            TextView temp = (TextView) findViewById(R.id.ukeys);
-            temp.append(friend_ukey);
+            invited_ukey = bundle.getString("friend_ukey");
+            ukeys_textview = (TextView) findViewById(R.id.ukeys);
+            ukeys_textview.append(invited_ukey + ",");
         }
 
         // Create empty array (will update it later)
@@ -45,11 +57,6 @@ public class NewHangoutActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                Bundle bundleData = new Bundle();
-
-                HashMap<String, String> user = freeFriendsArray.get(position);
-                String ukey = user.get("ukey");
-
                 Button invite_button = (Button) view.findViewById(R.id.inviteFriendButton);
                 // TODO: Only show invite button if they are available
                 if(invite_button.getVisibility() == View.GONE) {
@@ -57,29 +64,10 @@ public class NewHangoutActivity extends ActionBarActivity {
                 } else {
                     invite_button.setVisibility(View.GONE);
                 }
-
-//                User.inviteFriendToHang(context, ukey, "invite to hang");
-                //Toast.makeText(getActivity().getApplicationContext(), "size = " +  SpotsArray.size(), Toast.LENGTH_SHORT).show();
-
-//                HashMap<String, String> user = usersArray.get(position);
-//
-//                String spot_id = user.get("id");
-//                String url = user.get("photo");
-//                String overall = user.get("overall");
-//                String bust = user.get("bust");
-//                String difficulty = user.get("difficulty");
-//
-//                bundleData.putString("spot_id", spot_id);
-//                bundleData.putString("url", url);
-//                bundleData.putString("overall", overall);
-//
-//                Intent intent = new Intent(getActivity().getApplicationContext(),
-//                        SpotPage.class);
-//
-//                intent.putExtras(bundleData);
-//                startActivity(intent);
             }
         });
+
+        createHangoutButton.setOnClickListener(new OnClickListenerWithParent(this, context));
 
         /**
          *
@@ -87,7 +75,7 @@ public class NewHangoutActivity extends ActionBarActivity {
          * a {@link com.thehub.thehubandroid.GetFacebookFriendsTask}.
          *
          */
-        User.getFreeFacebookFriends(context, listView, freeFriendsArray);
+        User.getFreeFacebookFriends(context, listView, freeFriendsArray, this, invited_ukey);
     }
 
     @Override

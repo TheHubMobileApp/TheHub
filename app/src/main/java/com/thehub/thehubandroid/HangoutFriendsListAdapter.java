@@ -65,7 +65,7 @@ public class HangoutFriendsListAdapter extends BaseAdapter {
         int size = Utils.convertDpToPixel(100, context);
 
         String prof_pic = user.get("picture_url");
-        Log.i("DEBUG", "USER = " + user.toString());
+//        Log.i("DEBUG", "USER = " + user.toString());
         Picasso.with(context)
                 .load(prof_pic)
                 .centerCrop()

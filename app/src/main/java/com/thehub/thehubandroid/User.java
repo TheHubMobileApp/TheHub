@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
-    static String base_url = Utils.DAVIDS_IP;
+    static String base_url = Utils.IP_PROD;
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
         String url = base_url + "/login/facebook";
@@ -35,8 +35,8 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new InviteToHangTask(context).execute(new String[]{url, ukey,
-                akey, friend_ukeys, title});
+        new InviteToHangTask(context, friend_ukeys).execute(url, ukey,
+                akey, title);
     }
 
     // TODO: add in an expire for the status
@@ -118,7 +118,7 @@ public class User {
         new GetFacebookFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
 
-    public static void getFreeFacebookFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray) {
+    public static void getFreeFacebookFriends(Context context, ListView listView, ArrayList<HashMap<String, String>> usersArray, Activity parent, String invited_ukey) {
         String url = base_url + "/free_friends";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
@@ -130,7 +130,7 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new GetFreeFacebookFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
+        new GetFreeFacebookFriendsTask(context, listView, usersArray, parent, invited_ukey).execute(new String[]{url, ukey, akey});
 
     }
 

@@ -1,5 +1,6 @@
 package com.thehub.thehubandroid;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
@@ -33,11 +34,15 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
     private String ukey;
     private String akey;
     private NewHangoutFriendAdapter adapter;
+    private Activity parent;
+    private String invited_ukey;
 
-    public GetFreeFacebookFriendsTask(Context context, ListView listview, ArrayList<HashMap<String, String>> usersArray) {
+    public GetFreeFacebookFriendsTask(Context context, ListView listview, ArrayList<HashMap<String, String>> usersArray, Activity parent_, String invited_ukey) {
         this.context = context;
         this.listView = listview;
         this.usersArray = usersArray;
+        this.invited_ukey = invited_ukey;
+        parent = parent_;
     }
 
     @Override
@@ -105,6 +110,11 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
                     userMap.put("activity_name", availability.getString("activity_name"));
                     userMap.put("picture_url", user.getString("picture_url"));
                     userMap.put("ukey", user.getString("ukey"));
+                    if (user.getString("ukey").equals(invited_ukey)) {
+                        // this user was already invited and shouldn't be displayed
+                        Toast.makeText(context, "Friend invited!", Toast.LENGTH_SHORT).show();
+                        continue;
+                    }
 
                 } catch (JSONException e) {
                     Toast.makeText(context, "Unable to get friends", Toast.LENGTH_LONG).show();
@@ -117,7 +127,7 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
             Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
         }
 
-        adapter = new NewHangoutFriendAdapter(context, usersArray, R.layout.new_hangout_activity);
+        adapter = new NewHangoutFriendAdapter(context, usersArray, R.layout.new_hangout_activity, parent);
         listView.setAdapter(adapter);
     }
 }
