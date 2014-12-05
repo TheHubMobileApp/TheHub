@@ -51,7 +51,6 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
         BufferedReader inBuffer = null;
         String url = params[0];
         String result = "fail";
-        Log.i("DEBUG", "made it to doInBackground");
 
         /**
          *   0       1        2    3            4           5              6       7      8
@@ -67,7 +66,7 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             exp_hrs = params[6];
             exp_min = params[7];
             finish_activiy = Boolean.parseBoolean(params[8]);
-            Log.i("DEBUG", "finish_activity == " + finish_activiy);
+//            Log.i("DEBUG", "finish_activity == " + finish_activiy);
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost request = new HttpPost(url);
@@ -107,7 +106,7 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
 //		Toast.makeText(context, "RESPONSE = " + response, Toast.LENGTH_LONG)
 //				.show();
-        Log.i("DEBUG", response);
+//        Log.i("DEBUG", response);
 
         JSONObject availability;
         try {

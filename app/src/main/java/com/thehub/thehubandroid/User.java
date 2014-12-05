@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
-    static String base_url = Utils.IP_PROD;
+    static String base_url = Utils.DAVIDS_IP;
 
     public static void loginToFacebook(Context context, String user_id, String access_token, int expire) {
         String url = base_url + "/login/facebook";
@@ -147,5 +147,20 @@ public class User {
         }
 
         new GetCurrentUserTask(context, activity).execute(url, ukey, akey);
+    }
+
+    public static void leaveHangout(Context context, String hkey) {
+        String url = base_url + "/remove_from_hangout";
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("")){
+            Toast.makeText(context, "ukey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new RemoveFromHangoutTask(context).execute(url, akey, ukey, hkey);
     }
 }
