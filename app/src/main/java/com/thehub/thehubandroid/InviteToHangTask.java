@@ -52,8 +52,12 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
 
             // Add post params
             for(String s : friend_ukeys) {
-                postParameters.add(new BasicNameValuePair("invite_ukey", s));
+                if(s != null && !s.isEmpty()) {
+                    postParameters.add(new BasicNameValuePair("invite_ukey", s));
+                }
             }
+            // TODO: passing in the current user's ukey here, and not in the backend
+            postParameters.add(new BasicNameValuePair("invite_ukey", ukey));
             postParameters.add(new BasicNameValuePair("title", title));
 
             // set header

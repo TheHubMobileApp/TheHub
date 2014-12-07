@@ -115,10 +115,10 @@ public class GetHangoutTask extends AsyncTask<String, Void, String> {
         }
 
         ListView listView = (ListView) activity.findViewById(R.id.listView);
-        TextView Title = (TextView) activity.findViewById(R.id.title);
         TextView numUsers = (TextView) activity.findViewById(R.id.numUsers);
-        numUsers.setText(num_users);
+        TextView Title = (TextView) activity.findViewById(R.id.title);
         Title.setText(title);
+        numUsers.setText(num_users);
 
         adapter = new HangoutFriendsListAdapter(context, usersArray, R.layout.hangout_activity);
         listView.setAdapter(adapter);

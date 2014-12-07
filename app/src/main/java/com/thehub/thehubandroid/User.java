@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -149,7 +150,7 @@ public class User {
         new GetCurrentUserTask(context, activity).execute(url, ukey, akey);
     }
 
-    public static void leaveHangout(Context context, String hkey) {
+    public static void leaveHangout(Context context, Activity parent_activity, String hkey) {
         String url = base_url + "/remove_from_hangout";
 
         SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
@@ -161,6 +162,6 @@ public class User {
             Toast.makeText(context, "ukey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new RemoveFromHangoutTask(context).execute(url, akey, ukey, hkey);
+        new RemoveFromHangoutTask(context, parent_activity).execute(url, akey, ukey, hkey);
     }
 }

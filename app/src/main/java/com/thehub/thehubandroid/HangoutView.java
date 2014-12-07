@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,8 @@ import java.util.HashMap;
 public class HangoutView extends Activity {
     private FriendsListAdapter dataAdapter;
     private ListView listView;
+    private TextView title;
+    private Activity this_activity;
     private Context context;
     private String hkey;
     private ArrayList<HashMap<String, String>> usersArray;
@@ -26,7 +29,9 @@ public class HangoutView extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hangout_activity);
         context = getApplicationContext();
+        this_activity = this;
         listView = (ListView) findViewById(R.id.listView);
+        title = (TextView) findViewById(R.id.title);
         usersArray = new ArrayList<HashMap<String, String>>();
         leaveHangoutButton = (Button) findViewById(R.id.leaveHangout);
 
@@ -36,7 +41,7 @@ public class HangoutView extends Activity {
         leaveHangoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User.leaveHangout(context, hkey);
+                User.leaveHangout(context, this_activity, hkey);
             }
         });
 

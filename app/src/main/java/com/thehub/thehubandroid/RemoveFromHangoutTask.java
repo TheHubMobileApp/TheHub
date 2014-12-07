@@ -1,9 +1,11 @@
 package com.thehub.thehubandroid;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -25,9 +27,11 @@ import java.util.List;
  */
 public class RemoveFromHangoutTask extends AsyncTask<String, Void, String> {
     private Context context;
+    private Activity parent_activity;
 
-    public RemoveFromHangoutTask(Context context) {
+    public RemoveFromHangoutTask(Context context, Activity parent_activity) {
         this.context = context;
+        this.parent_activity = parent_activity;
     }
 
     @Override
@@ -51,7 +55,6 @@ public class RemoveFromHangoutTask extends AsyncTask<String, Void, String> {
             HttpPost request = new HttpPost(url);
             List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 
-            postParams.add(new BasicNameValuePair("remove_ukey", ukey));
             postParams.add(new BasicNameValuePair("hkey", hkey));
 
             // set header
@@ -78,6 +81,11 @@ public class RemoveFromHangoutTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String response) {
+        // Need to actually remove the participant from the hangout display
+        // TODO: actually check the response lol
         Log.i("DEBUG", response);
+        Toast.makeText(context, "Successfully removed from hangout", Toast.LENGTH_SHORT).show();
+        parent_activity.finish();
+
     }
 }

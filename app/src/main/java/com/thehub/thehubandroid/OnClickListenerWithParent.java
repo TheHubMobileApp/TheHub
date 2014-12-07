@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +34,7 @@ public class OnClickListenerWithParent implements View.OnClickListener
         String title = edittext.getText().toString();
         // TODO: need some other way to do this shite
         User.inviteFriendToHang(context, ukeys, title);
+        Toast.makeText(context, "Hangout successfully created!", Toast.LENGTH_SHORT).show();
         parent_activity.finish();
     }
 }
