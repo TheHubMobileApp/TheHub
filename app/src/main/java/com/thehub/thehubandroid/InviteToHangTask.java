@@ -3,6 +3,7 @@ package com.thehub.thehubandroid;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -57,7 +58,6 @@ public class InviteToHangTask extends AsyncTask<String, Void, String> {
                 }
             }
             // TODO: passing in the current user's ukey here, and not in the backend
-            postParameters.add(new BasicNameValuePair("invite_ukey", ukey));
             postParameters.add(new BasicNameValuePair("title", title));
 
             // set header

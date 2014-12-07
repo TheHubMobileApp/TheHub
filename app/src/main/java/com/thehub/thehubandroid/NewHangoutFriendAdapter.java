@@ -3,7 +3,6 @@ package com.thehub.thehubandroid;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -31,15 +31,6 @@ public class NewHangoutFriendAdapter extends BaseAdapter {
         TextView ukey;
     }
 
-//    public class CustomComparator implements Comparator<HashMap<String, String>> {
-//        @Override
-//        public int compare(HashMap<String, String> spotOne, HashMap<String, String> spotTwo) {
-//            double distanceOne = Double.parseDouble(spotOne.get("distance"));
-//            double distanceTwo = Double.parseDouble(spotTwo.get("distance"));
-//            return Double.compare(distanceOne, distanceTwo);
-//        }
-//    }
-
     public NewHangoutFriendAdapter(Context context, List<HashMap<String, String>> users, int resource, Activity parent_activity_) {
         this.setContext(context);
 //        Collections.sort(spots, new CustomComparator());
@@ -47,7 +38,6 @@ public class NewHangoutFriendAdapter extends BaseAdapter {
         parent_activity = parent_activity_;
     }
 
-    //public View newView(Context context, Cursor cursor, ViewGroup parent) {
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         View v = convertView;

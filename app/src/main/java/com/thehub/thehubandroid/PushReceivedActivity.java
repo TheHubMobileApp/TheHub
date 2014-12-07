@@ -35,7 +35,6 @@ public class PushReceivedActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.push_received_activity);
-//        setContentView(R.layout.edit_avail_activity);
         context = getApplicationContext();
 
         Toast.makeText(context, "Push received!", Toast.LENGTH_LONG).show();

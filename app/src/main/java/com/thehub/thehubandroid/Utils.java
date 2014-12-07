@@ -36,6 +36,7 @@ public class Utils {
     public static String DAVIDS_IP = "http://35.2.220.249:5000";
     public static String IP_TEST_STAMPS = "http://35.2.176.4:5000";
     public static String IP_PROD = "http://the-hub-backend.herokuapp.com";
+    public static String IP_CARA = "http://10.0.0.36:5000";
 
     public static int convertDpToPixel(float dp, Context context){
         Resources resources = context.getResources();

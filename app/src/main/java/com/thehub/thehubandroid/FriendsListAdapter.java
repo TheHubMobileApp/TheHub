@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -71,7 +71,6 @@ public class FriendsListAdapter extends BaseAdapter {
                     // TODO: need an activity to select those who are available right now
                     Intent intent = new Intent(context, NewHangoutActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("friend_ukey", user.get("ukey"));
                     context.startActivity(intent);
                 }
             });

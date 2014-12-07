@@ -1,10 +1,8 @@
 package com.thehub.thehubandroid;
 
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -67,7 +65,32 @@ public class NewHangoutActivity extends ActionBarActivity {
             }
         });
 
-        createHangoutButton.setOnClickListener(new OnClickListenerWithParent(this, context));
+        createHangoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                TextView textview = (TextView) findViewById(R.id.ukeys);
+                String raw_ukeys = textview.getText().toString();
+
+                // only create hangout if you invited someone
+                if(raw_ukeys.trim().equals("")) {
+                    Toast.makeText(context, "You can hangout alone, just not with our app!\nPlease select a friend.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    Toast.makeText(context, "Raw ukeys = " + raw_ukeys, Toast.LENGTH_SHORT).show();
+                    // FIXME: this seems convoluted, im trying to just get an arraylist of strings from raw ukeys
+                    ArrayList<String> ukeys = new ArrayList<String>(Arrays.asList(raw_ukeys.split(",")));
+
+                    // send out the request
+                    EditText edittext = (EditText) findViewById(R.id.hangout_title);
+                    String title = edittext.getText().toString();
+                    // TODO: need some other way to do this shite
+                    User.inviteFriendToHang(context, ukeys, title);
+                    Toast.makeText(context, "Hangout successfully created!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        });
 
         /**
          *
