@@ -51,15 +51,10 @@ public class HangoutListAdapter extends BaseAdapter {
             invite_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                     * TODO: need an activity to select those who are available right now
-                     * and are not in the given hangout V
-                    */
-
                     Bundle bundleData = new Bundle();
-                    //Toast.makeText(getActivity().getApplicationContext(), "size = " +  SpotsArray.size(), Toast.LENGTH_SHORT).show();
 
                     bundleData.putString("hkey", hangout.get("hkey"));
+                    bundleData.putString("title", hangout.get("title"));
 
                     Intent intent = new Intent(context, HangoutView.class);
 

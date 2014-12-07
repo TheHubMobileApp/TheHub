@@ -77,13 +77,18 @@ public class NewHangoutActivity extends ActionBarActivity {
                     Toast.makeText(context, "You can hangout alone, just not with our app!\nPlease select a friend.", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    Toast.makeText(context, "Raw ukeys = " + raw_ukeys, Toast.LENGTH_SHORT).show();
+                    EditText edittext = (EditText) findViewById(R.id.hangout_title);
+                    String title = edittext.getText().toString();
+                    // Make sure theres a title set
+                    if(title.trim().equals("")){
+                        Toast.makeText(context, "Please give this hangout a title", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     // FIXME: this seems convoluted, im trying to just get an arraylist of strings from raw ukeys
                     ArrayList<String> ukeys = new ArrayList<String>(Arrays.asList(raw_ukeys.split(",")));
 
                     // send out the request
-                    EditText edittext = (EditText) findViewById(R.id.hangout_title);
-                    String title = edittext.getText().toString();
                     // TODO: need some other way to do this shite
                     User.inviteFriendToHang(context, ukeys, title);
                     Toast.makeText(context, "Hangout successfully created!", Toast.LENGTH_SHORT).show();

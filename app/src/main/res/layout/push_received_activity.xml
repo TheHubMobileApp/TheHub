@@ -2,43 +2,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000"
+    android:background="#fff"
     android:orientation="vertical">
 
+    <!-- Placeholder for hkey -->
     <TextView
-        android:layout_marginTop="10dp"
+        android:id="@+id/hkey"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="TAP TO CHANGE"
-        android:textColor="#EEE"
+        android:layout_marginTop="10dp"
+        android:text="Hangout Name"
+        android:textColor="#555"
         android:textSize="35sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_below="@+id/title"
-        android:id="@+id/textView"
+        android:id="@+id/inviteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textColor="#EEE"
-        android:text="lolololol"
-        android:textSize="25sp"/>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="You were invited by disp_name to hang out!"
+        android:textColor="#555"
+        android:textSize="25sp" />
 
-    <Button
-        android:id="@+id/expire_button"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+
+    <!-- EDDIE THIS SHOULD BE A CIRCLE LIKE THEIR OTHER ICONS -->
+    <ImageView
+        android:id="@+id/friendCircle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/inviteText"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:background="#958687"
-        android:text="No Expire Set"
-        android:textColor="#EEE"
-        android:textSize="20sp" />
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop" />
 
+    <ImageView
+        android:id="@+id/hubLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/friendCircle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/hub_logo"
+        android:scaleType="centerInside" />
 
+    <!-- Button container -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/denyButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#958687"
+            android:text="Deny"
+            android:textColor="#333"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/acceptButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="#958687"
+            android:text="Accept"
+            android:textColor="#333"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <!-- End button container -->
 
 </RelativeLayout>

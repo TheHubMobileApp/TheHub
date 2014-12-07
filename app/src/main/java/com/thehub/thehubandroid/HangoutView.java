@@ -18,9 +18,9 @@ public class HangoutView extends Activity {
     private FriendsListAdapter dataAdapter;
     private ListView listView;
     private TextView title;
-    private Activity this_activity;
+    private Activity activity;
     private Context context;
-    private String hkey;
+    private String hkey, hangout_title;
     private ArrayList<HashMap<String, String>> usersArray;
     private Button leaveHangoutButton;
 
@@ -28,20 +28,24 @@ public class HangoutView extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hangout_activity);
+        activity = this;
+        usersArray = new ArrayList<HashMap<String, String>>();
+
         context = getApplicationContext();
-        this_activity = this;
         listView = (ListView) findViewById(R.id.listView);
         title = (TextView) findViewById(R.id.title);
-        usersArray = new ArrayList<HashMap<String, String>>();
         leaveHangoutButton = (Button) findViewById(R.id.leaveHangout);
 
         Bundle showData = getIntent().getExtras();
         hkey = showData.getString("hkey");
 
+        hangout_title = showData.getString("title");
+        title.setText(hangout_title);
+
         leaveHangoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User.leaveHangout(context, this_activity, hkey);
+                User.leaveHangout(context, activity, hkey);
             }
         });
 

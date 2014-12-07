@@ -65,11 +65,12 @@ public class NewHangoutFriendAdapter extends BaseAdapter {
                     TextView textview = (TextView) parent_activity.findViewById(R.id.ukeys);
                     HashMap<String, String> user = users.get(position);
                     String ukey = user.get("ukey");
+                    String display_name = user.get("display_name");
                     textview.append(ukey + ",");
                     // remove this item
                     users.remove(position);
                     notifyDataSetChanged();
-                    Toast.makeText(context, "Friend invited!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, display_name + " added to invite list!", Toast.LENGTH_SHORT).show();
                 }
             });
 

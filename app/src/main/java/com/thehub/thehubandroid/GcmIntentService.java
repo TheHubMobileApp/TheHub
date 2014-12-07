@@ -50,7 +50,7 @@ public class GcmIntentService extends IntentService {
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
 
                 // Post notification of received message.
-                sendNotification("Received: " + extras.toString(), extras);
+                sendNotification("from: " + extras.getString("invited_by"), extras);
                 Log.i(Utils.DEBUG_TAG, "Received: " + extras.toString());
             }
         }
@@ -66,6 +66,7 @@ public class GcmIntentService extends IntentService {
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent intent = new Intent(this, PushReceivedActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.putExtras(extras);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
@@ -74,10 +75,11 @@ public class GcmIntentService extends IntentService {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("Hangout Received")
+                        .setContentTitle("Hangout Request")
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
-                        .setContentText(msg);
+                        .setContentText(msg)
+                        .setAutoCancel(true);
 
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());

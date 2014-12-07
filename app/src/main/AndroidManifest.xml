@@ -76,6 +76,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
             android:name=".PushReceivedActivity"
+            android:noHistory="true"
             android:label="Hangout Request" >
         </activity>
         <activity

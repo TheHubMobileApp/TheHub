@@ -34,8 +34,24 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new InviteToHangTask(context, friend_ukeys).execute(url, ukey,
-                akey, title);
+        new InviteToHangTask(context, friend_ukeys).execute(url, ukey, akey, title);
+    }
+
+    public static void respondToInvite(Context context, String hkey, String response, Activity activity) {
+
+        String url = base_url + "/respond/" + hkey;
+
+        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE,
+                Context.MODE_MULTI_PROCESS);
+
+        String akey = theHubprefs.getString("akey", "");
+        String ukey = theHubprefs.getString("ukey", "");
+
+        if(ukey.equals("") || akey.equals("")){
+            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+        }
+
+        new RespondToPushTask(context, activity).execute(url, ukey, akey, response);
     }
 
     // TODO: add in an expire for the status
@@ -157,7 +173,7 @@ public class User {
         String ukey = theHubprefs.getString("ukey", "");
 
         if(ukey.equals("")){
-            Toast.makeText(context, "ukey is empty... ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "ukey is empty...", Toast.LENGTH_SHORT).show();
         }
 
         new RemoveFromHangoutTask(context, parent_activity).execute(url, akey, ukey, hkey);
