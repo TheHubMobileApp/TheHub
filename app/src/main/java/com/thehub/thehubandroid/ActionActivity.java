@@ -43,8 +43,8 @@ public class ActionActivity extends ActionBarActivity {
         mTabsAdapter = new TabsAdapter(this, mViewPager);
         mTabsAdapter.addTab(actionBar.newTab().setText("View"),
                 FriendsListView.class, null);
-        mTabsAdapter.addTab(actionBar.newTab().setText("Invite"),
-                InviteFriendsListView.class, null);
+//        mTabsAdapter.addTab(actionBar.newTab().setText("Invite"),
+//                InviteFriendsListView.class, null);
         mTabsAdapter.addTab(actionBar.newTab().setText("Hangouts"),
                 HangoutListView.class, null);
 
