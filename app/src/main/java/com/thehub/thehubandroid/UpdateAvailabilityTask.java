@@ -26,7 +26,6 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
@@ -51,7 +50,6 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
         BufferedReader inBuffer = null;
         String url = params[0];
         String result = "fail";
-
         /**
          *   0       1        2    3            4           5              6       7      8
          * {url, available, ukey, akey, activity_level, activity_name, exp_hrs, exp_min, finish_activity(bool)}

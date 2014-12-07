@@ -12,17 +12,24 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.util.ArrayList;
 
 public class ActionActivity extends ActionBarActivity {
     ViewPager mViewPager;
     TabsAdapter mTabsAdapter;
+    GoogleCloudMessaging gcm;
+    String regid;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.action_activity);
+        context = getApplicationContext();
 
         // For swipe
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -43,6 +50,23 @@ public class ActionActivity extends ActionBarActivity {
 
         if (savedInstanceState != null) {
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+        }
+
+        /**
+         * FOR GCM
+         */
+        // Check device for Play Services APK.
+        if (Utils.checkPlayServices(this)) {
+            // If this check succeeds, proceed with normal processing.
+            // Otherwise, prompt user to get valid Play Services APK.
+            gcm = GoogleCloudMessaging.getInstance(this);
+            regid = Utils.getRegistrationId(context);
+
+            if (regid.isEmpty()) {
+                User.registerInBackground(context, regid);
+            }
+        } else {
+            Toast.makeText(context, "get gcm failed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -172,5 +196,11 @@ public class ActionActivity extends ActionBarActivity {
         inflater.inflate(R.menu.actionbar_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Utils.checkPlayServices(this);
     }
 }
