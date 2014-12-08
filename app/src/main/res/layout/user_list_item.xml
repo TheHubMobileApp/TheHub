@@ -71,7 +71,7 @@
 
         <Button
             android:focusable="false"
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/inviteFriendButton"
             android:layout_width="45dp"
             android:layout_height="45dp"
