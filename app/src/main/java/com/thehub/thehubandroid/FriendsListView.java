@@ -54,10 +54,14 @@ public class FriendsListView extends Fragment {
                     Button invite_button = (Button) view.findViewById(R.id.inviteFriendButton);
                     // TODO: Only show invite button if they are available
                     if (invite_button.getVisibility() == View.GONE) {
-                        invite_button.setVisibility(View.VISIBLE);
+                        //invite_button.setVisibility(View.VISIBLE);
                     } else {
-                        invite_button.setVisibility(View.GONE);
+                        //invite_button.setVisibility(View.GONE);
                     }
+                }
+                else{
+                    Button invite_button = (Button) view.findViewById(R.id.inviteFriendButton);
+                    invite_button.setVisibility(View.INVISIBLE);
                 }
 
 //                User.inviteFriendToHang(context, ukey, "invite to hang");

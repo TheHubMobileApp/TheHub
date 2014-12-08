@@ -25,7 +25,8 @@
             android:layout_marginTop="2dp"
             android:text="Robbie Small"
             android:textColor="#000"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/numUsers"
@@ -35,23 +36,19 @@
             android:layout_marginTop="2dp"
             android:text="2 users"
             android:textColor="#000"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <Button
             android:focusable="false"
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/inviteUsersButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/numUsers"
-            android:layout_centerHorizontal="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="2dp"
-            android:text="View Info"
-            android:textColor="#000"
-            android:background="#eee"
+            android:background="@drawable/info_icon"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:textSize="25sp" />
+            android:paddingRight="10dp" />
     </RelativeLayout>
 
     <!-- Holder for display names (comma spliced) -->
