@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -16,13 +17,15 @@ import android.widget.Toast;
 public class EditAvailActivity extends Activity {
     private Context context;
     private RelativeLayout background, avail_settings;
-    private Button expire_button, update_button;
+    private Button expire_button, update_button,update_activitylv_button;
     private TextView avail_text_view, hrs, min;
     private String avail_text;
     private SeekBar activity_level_bar;
     private String activity_level, activity_name, exp_hrs, exp_min;
     private EditText activity_name_field;
     private CustomTimePickerDialog.OnTimeSetListener timeSetListener;
+    private ImageView view;
+    private TextView time_text;
     final private String[] activity_strings = {
             // @robbie -> dave this is hilarious
         "Comatose",            // 0
@@ -53,6 +56,9 @@ public class EditAvailActivity extends Activity {
         expire_button = (Button) findViewById(R.id.expire_button);
         avail_text_view = (TextView) findViewById(R.id.availText);
         activity_name_field = (EditText) findViewById(R.id.activity_name);
+        view = (ImageView) findViewById(R.id.availPic);
+        update_activitylv_button = (Button) findViewById(R.id.update_button);
+        time_text = (TextView)findViewById(R.id.time_text);
 
         // hidden inputs for hours and minutes
         hrs = (TextView) findViewById(R.id.hrs);
@@ -93,14 +99,22 @@ public class EditAvailActivity extends Activity {
                 Boolean finish_activity = false;
 
                 if (avail_text.equals(Utils.BUSY_MESSAGE)) {
-                    background.setBackgroundColor(Color.parseColor("#05800B"));
+                    view.setImageResource(R.drawable.free_icon);
+                    update_activitylv_button.setVisibility(View.VISIBLE);
+                    time_text.setVisibility(View.VISIBLE);
+                    //background.setBackgroundColor(Color.parseColor("#05800B"));
                     avail_settings.setVisibility(View.VISIBLE);
+                    expire_button.setVisibility(View.VISIBLE);
                     avail_text_view.setText(Utils.FREE_MESSAGE);
                     User.updateAvailability(context, EditAvailActivity.this, Utils.FREE, "0", "", "0", "0", finish_activity);
                 } else if (avail_text.equals(Utils.FREE_MESSAGE)) {
-                    background.setBackgroundColor(Color.parseColor("#ed1919"));
+                    //background.setBackgroundColor(Color.parseColor("#ed1919"));
+                    view.setImageResource(R.drawable.busy_icon);
+                    time_text.setVisibility(View.INVISIBLE);
                     avail_settings.setVisibility(View.INVISIBLE);
                     avail_text_view.setText(Utils.BUSY_MESSAGE);
+                    expire_button.setVisibility(View.INVISIBLE);
+                    update_activitylv_button.setVisibility(View.INVISIBLE);
                     User.updateAvailability(context, EditAvailActivity.this, Utils.BUSY, "0", "", "0", "0", finish_activity);
                 } else{
                     // TODO: get rid of this
@@ -140,7 +154,7 @@ public class EditAvailActivity extends Activity {
 
                 // Set to default text if set to 0:0 otherwise set the string
                 if(hourOfDay == 0 && minute == 0) {
-                    expire_button.setText(default_exp_text);
+                    time_text.setText(default_exp_text);
                 } else {
                     if(hourOfDay != 0) {
                         expite_text += Integer.toString(hourOfDay);
@@ -154,7 +168,7 @@ public class EditAvailActivity extends Activity {
                         expite_text += Integer.toString(minute);
                         expite_text += " min";
                     }
-                    expire_button.setText(expite_text);
+                    time_text.setText(expite_text);
                 }
             }
         };

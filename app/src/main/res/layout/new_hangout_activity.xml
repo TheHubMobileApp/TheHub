@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000">
+    android:background="#FFF">
 
     <!-- Holder for hkey -->
     <TextView
@@ -33,6 +33,7 @@
             android:id="@+id/hangout_title"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:textColor="#000"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -40,9 +41,11 @@
             android:layout_below="@id/hangout_title"
             android:layout_width="wrap_content"
             android:id="@+id/numUsers"
-            android:text="2 friends"
+            android:text="3 friends"
             android:textSize="20sp"
-            android:layout_height="wrap_content" />
+            android:textColor="#000"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
@@ -63,7 +66,9 @@
             android:id="@+id/listView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_above="@+id/createHangoutButton" />
+            android:layout_above="@+id/createHangoutButton"
+            android:divider = "#405D656C"
+            android:dividerHeight="1.0sp"/>
 
         <Button
             android:layout_width="fill_parent"

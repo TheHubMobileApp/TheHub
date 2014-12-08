@@ -3,45 +3,56 @@
     android:id="@+id/editBackground"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000"
+    android:background="#424242"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Current Status"
+        android:textColor="#FFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <ImageView
+        android:id="@+id/availPic"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView"
+        android:layout_above="@+id/availSettings"/>
     <TextView
         android:id="@+id/availText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textColor="#EEE"
+        android:textColor="#FFF"
         android:textSize="25sp"
-        android:visibility="gone" />
-
-    <TextView
-        android:layout_above="@+id/availSettings"
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:text = "You are free"
+        android:visibility="visible"
         android:layout_centerHorizontal="true"
-        android:text="TAP TO CHANGE"
-        android:textColor="#EEE"
-        android:textSize="35sp"
-        android:textStyle="bold" />
+        android:layout_below="@id/availPic"/>
 
     <!-- Used to center the view -->
     <RelativeLayout
         android:id="@+id/availSettings"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_above="@+id/update_button"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/activity_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="55dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="50dp"
             android:text="Activity Level"
-            android:textColor="#EEE"
+            android:textColor="#FFF"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -61,7 +72,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="A little adventurous"
-            android:textColor="#EEE"
+            android:textColor="#FFF"
             android:textSize="20sp" />
 
         <EditText
@@ -72,18 +83,6 @@
             android:layout_alignTop="@+id/activity_text"
             android:layout_marginTop="140dp"
             android:hint="Activity Name" />
-
-        <Button
-            android:id="@+id/update_button"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:background="#958687"
-            android:layout_below="@+id/activity_level"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="90dp"
-            android:text="Update Activity Level"
-            android:textColor="#EEE"
-            android:textSize="25sp" />
 
         <!-- Placeholders for expire -->
         <TextView
@@ -101,22 +100,38 @@
             android:visibility="gone"/>
 
         <!-- End Placeholders for expire -->
-
-
     </RelativeLayout>
 
     <Button
         android:id="@+id/expire_button"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="55dp"
+        android:background="@drawable/set_time"
+        android:textColor="#EEE"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/availText"
+        android:layout_toStartOf="@+id/availText" />
+
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/update_icon"
+        android:textColor="#000"
+        android:textSize="25sp"
+        android:layout_alignTop="@+id/expire_button"
+        android:layout_toRightOf="@+id/availText"
+        android:layout_toEndOf="@+id/availText" />
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:background="#958687"
-        android:text="No Expire Set"
-        android:textColor="#EEE"
-        android:textSize="20sp" />
-
+        android:text = "No Expire Time Set"
+        android:textSize="25sp"/>
 
 
 </RelativeLayout>

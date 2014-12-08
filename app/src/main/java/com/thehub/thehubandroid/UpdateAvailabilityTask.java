@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -118,14 +120,19 @@ public class UpdateAvailabilityTask extends AsyncTask<String, Void, String> {
             EditText activity_name_field = (EditText) activity.findViewById(R.id.activity_name);
             SeekBar activity_level_slider = (SeekBar) activity.findViewById(R.id.activity_level);
             RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
+            ImageView view = (ImageView)activity.findViewById(R.id.availPic);
+            TextView time_text = (TextView) activity.findViewById(R.id.time_text);
+            //Button update_activitylv_button = (Button) activity.findViewById(R.id.update_button);
 
             if(available.equals(Utils.FREE)) {
-                background.setBackgroundColor(Color.parseColor("#05800B"));
+                view.setImageResource(R.drawable.free_icon);
+                //background.setBackgroundColor(Color.parseColor("#05800B"));
                 activity_level_slider.setProgress(Integer.parseInt(activity_level));
                 activity_name_field.setText(activity_name);
                 avail_text.setText(Utils.FREE_MESSAGE);
             } else if(available.equals(Utils.BUSY)) {
-                background.setBackgroundColor(Color.parseColor("#ed1919"));
+                view.setImageResource(R.drawable.busy_icon);
+                //background.setBackgroundColor(Color.parseColor("#ed1919"));
                 activity_level_slider.setProgress(0);
 //              TODO: not sure if this is necessary
                 activity_name_field.setText("");

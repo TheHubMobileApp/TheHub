@@ -39,13 +39,12 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:id="@+id/leaveHangout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:textSize="10sp"
-            android:text="Leave Hangout" />
+            android:background="@drawable/leave_icon" />
 
     </RelativeLayout>
 
@@ -65,7 +64,9 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_height="fill_parent"
+            android:divider = "#405D656C"
+            android:dividerHeight="1.0sp"/>
 
     </RelativeLayout>
 

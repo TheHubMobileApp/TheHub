@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -96,6 +97,9 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
             RelativeLayout background = (RelativeLayout) activity.findViewById(R.id.editBackground);
             RelativeLayout avail_settings = (RelativeLayout) activity.findViewById(R.id.availSettings);
             Button expire_button = (Button) activity.findViewById(R.id.expire_button);
+            Button update_activitylv_button = (Button) activity.findViewById(R.id.update_button);
+            ImageView view = (ImageView) activity.findViewById(R.id.availPic);
+            TextView time_text = (TextView)activity.findViewById(R.id.time_text);
 
             // hidden inputs for hours and minutes
             TextView hrs = (TextView) activity.findViewById(R.id.hrs);
@@ -104,7 +108,7 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
             String expite_text = Utils.EXPIRE_ROOT_TEXT;
             // TODO: this should be a utils method
             if(expire_hrs.equals("-1") && expire_min.equals("-1")) {
-                expire_button.setText(Utils.NO_EXPIRE_TEXT);
+                time_text.setText(Utils.NO_EXPIRE_TEXT);
             } else {
                 if(!expire_hrs.equals("-1")) {
                     // set hidden inputs
@@ -124,21 +128,28 @@ public class GetCurrentUserTask extends AsyncTask<String, Void, String> {
                     expite_text += expire_min;
                     expite_text += " min";
                 }
-                expire_button.setText(expite_text);
+               time_text.setText(expite_text);
             }
 
             if(available.equals(Utils.FREE)) {
                 avail_text.setText(Utils.FREE_MESSAGE);
-                background.setBackgroundColor(Color.parseColor("#05800B"));
-
+                view.setImageResource(R.drawable.free_icon);
+                update_activitylv_button.setVisibility(View.VISIBLE);
+                //background.setBackgroundColor(Color.parseColor("#05800B"));
+                expire_button.setVisibility(View.VISIBLE);
                 avail_text.setVisibility(View.VISIBLE);
+                time_text.setVisibility(View.VISIBLE);
                 activity_level_bar.setProgress(activity_level);
             } else if(available.equals(Utils.BUSY)) {
-                background.setBackgroundColor(Color.parseColor("#ffed1919"));
+                view.setImageResource(R.drawable.busy_icon);
+                //background.setBackgroundColor(Color.parseColor("#ffed1919"));
                 activity_level_bar.setProgress(activity_level);
                 avail_text.setText(Utils.BUSY_MESSAGE);
                 avail_settings.setVisibility(View.INVISIBLE);
                 avail_text.setVisibility(View.VISIBLE);
+                time_text.setVisibility(View.INVISIBLE);
+                update_activitylv_button.setVisibility(View.INVISIBLE);
+                expire_button.setVisibility(View.INVISIBLE);
 //                activity_level_picker.setValue(0);
             } else {
                 Toast.makeText(context, "Illegal availability: " + available, Toast.LENGTH_LONG).show();
