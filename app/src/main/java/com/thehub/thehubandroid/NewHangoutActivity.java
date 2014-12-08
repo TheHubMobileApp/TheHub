@@ -37,13 +37,13 @@ public class NewHangoutActivity extends ActionBarActivity {
         context = getApplicationContext();
         listView = (ListView) findViewById(R.id.listView);
         createHangoutButton = (Button) findViewById(R.id.createHangoutButton);
+        ukeys_textview = (TextView) findViewById(R.id.ukeys);
         invited_ukey = null;
 
         // if a friend was invited to hang, figure how who that friend was and mark him as invited
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             invited_ukey = bundle.getString("friend_ukey");
-            ukeys_textview = (TextView) findViewById(R.id.ukeys);
             ukeys_textview.append(invited_ukey + ",");
         }
 
@@ -69,8 +69,7 @@ public class NewHangoutActivity extends ActionBarActivity {
             @Override
             public void onClick(View v)
             {
-                TextView textview = (TextView) findViewById(R.id.ukeys);
-                String raw_ukeys = textview.getText().toString();
+                String raw_ukeys = ukeys_textview.getText().toString();
 
                 // only create hangout if you invited someone
                 if(raw_ukeys.trim().equals("")) {

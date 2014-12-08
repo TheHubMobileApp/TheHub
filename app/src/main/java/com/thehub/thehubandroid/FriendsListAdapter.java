@@ -4,6 +4,7 @@ package com.thehub.thehubandroid;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ public class FriendsListAdapter extends BaseAdapter {
         ViewHolder vh = null;
         final HashMap<String, String> user = users.get(position);
         String availability = user.get("availability");
+        final String ukey = user.get("ukey");
 //      activity_level stores either the activity_name or the activity_level
         String activity_level = user.get("activity_level");
         String activity_name = user.get("activity_name");
@@ -68,8 +70,11 @@ public class FriendsListAdapter extends BaseAdapter {
             invite_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle extras = new Bundle();
+                    extras.putString("friend_ukey", ukey);
                     // TODO: need an activity to select those who are available right now
                     Intent intent = new Intent(context, NewHangoutActivity.class);
+                    intent.putExtras(extras);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
