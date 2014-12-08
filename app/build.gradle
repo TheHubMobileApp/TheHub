@@ -1,18 +1,26 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'thehubandroidkey'
+            keyPassword 'thehub'
+            storeFile file('/Users/Robbie/keystore/androidkeys.jks')
+            storePassword 'thehub'
+        }
+    }
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
-
     defaultConfig {
         applicationId "com.thehub.thehubandroid"
         minSdkVersion 11
         targetSdkVersion 21
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.config
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -21,9 +29,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-
-
     compile 'com.android.support:appcompat-v7:21.0.2'
     compile 'com.squareup.picasso:picasso:2.3.4'
     compile 'com.github.asne.facebook:facebook:3.17.2'
