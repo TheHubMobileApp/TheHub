@@ -145,7 +145,7 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new GetFreeFacebookFriendsTask(context, listView, usersArray, parent, invited_ukey).execute(new String[]{url, ukey, akey});
+        new GetAdditionalFacebookFriendsTask(context, listView, usersArray, parent, invited_ukey).execute(new String[]{url, ukey, akey});
 
     }
 
@@ -194,4 +194,19 @@ public class User {
         new RegisterForGCMTask(context, regID).execute(new String[]{url, ukey, akey});
 
     }
+
+//    public static void inviteAdditionalFriends(Context context, Activity activity, ArrayList<HashMap<String, String>> usersArray) {
+//        String url = base_url + "/add/" + hkey;
+//
+//        SharedPreferences theHubprefs = context.getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
+//
+//        String akey = theHubprefs.getString("akey", "");
+//        String ukey = theHubprefs.getString("ukey", "");
+//
+//        if(ukey.equals("") || akey.equals("")) {
+//            Toast.makeText(context, "ukey or akey is empty...", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        new
+//    }
 }
