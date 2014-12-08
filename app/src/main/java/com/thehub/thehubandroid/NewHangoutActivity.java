@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,8 @@ public class NewHangoutActivity extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.listView);
         createHangoutButton = (Button) findViewById(R.id.createHangoutButton);
         ukeys_textview = (TextView) findViewById(R.id.ukeys);
+        // prevent the keyboard from automatically showing
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         invited_ukey = null;
 
         // if a friend was invited to hang, figure how who that friend was and mark him as invited
