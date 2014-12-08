@@ -41,7 +41,7 @@ public class ActionActivity extends ActionBarActivity {
 
         // Specify that tabs should be displayed in the action bar.
         mTabsAdapter = new TabsAdapter(this, mViewPager);
-        mTabsAdapter.addTab(actionBar.newTab().setText("View"),
+        mTabsAdapter.addTab(actionBar.newTab().setText("Friends"),
                 FriendsListView.class, null);
 //        mTabsAdapter.addTab(actionBar.newTab().setText("Invite"),
 //                InviteFriendsListView.class, null);
