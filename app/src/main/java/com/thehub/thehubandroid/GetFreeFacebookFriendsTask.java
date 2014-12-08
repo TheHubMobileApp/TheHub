@@ -110,9 +110,12 @@ public class GetFreeFacebookFriendsTask extends AsyncTask<String, Void, String> 
                     userMap.put("activity_name", availability.getString("activity_name"));
                     userMap.put("picture_url", user.getString("picture_url"));
                     userMap.put("ukey", user.getString("ukey"));
-                    if (user.getString("ukey").equals(invited_ukey) || user.getString("ukey").equals(ukey)) {
+                    if (user.getString("ukey").equals(invited_ukey)) {
                         // this user was already invited and shouldn't be displayed
                         Toast.makeText(context, user.getString("display_name") + " added to invite list!\nSelect other to invite.", Toast.LENGTH_SHORT).show();
+                        continue;
+                    } else if (user.getString("ukey").equals(ukey)) {
+                        // skip yourself
                         continue;
                     }
 
