@@ -102,6 +102,11 @@ public class GetFriendsTask extends AsyncTask<String, Void, String> {
                     userMap.put("display_name", user.getString("display_name"));
                     userMap.put("picture_url", user.getString("picture_url"));
                     userMap.put("ukey", user.getString("ukey"));
+                    if (user.getString("ukey").equals(ukey)) {
+                        // this user was already invited and shouldn't be displayed
+                        Toast.makeText(context, user.getString("display_name") + " added to invite list!\nSelect other to invite.", Toast.LENGTH_SHORT).show();
+                        continue;
+                    }
 
 //                    Log.i("DEBUG", "Picture url into map = " + user.getString("picture_url"));
                 } catch (JSONException e) {
