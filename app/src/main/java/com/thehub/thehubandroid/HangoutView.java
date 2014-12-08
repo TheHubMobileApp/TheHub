@@ -2,7 +2,9 @@ package com.thehub.thehubandroid;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class HangoutView extends Activity {
+public class HangoutView extends ActionBarActivity {
     private FriendsListAdapter dataAdapter;
     private ListView listView;
     private TextView title;
@@ -22,7 +24,6 @@ public class HangoutView extends Activity {
     private Context context;
     private String hkey, hangout_title;
     private ArrayList<HashMap<String, String>> usersArray;
-    private Button leaveHangoutButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,6 @@ public class HangoutView extends Activity {
         context = getApplicationContext();
         listView = (ListView) findViewById(R.id.listView);
         title = (TextView) findViewById(R.id.title);
-        leaveHangoutButton = (Button) findViewById(R.id.leaveHangout);
 
         Bundle showData = getIntent().getExtras();
         hkey = showData.getString("hkey");
@@ -42,12 +42,7 @@ public class HangoutView extends Activity {
         hangout_title = showData.getString("title");
         title.setText(hangout_title);
 
-        leaveHangoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                User.leaveHangout(context, activity, hkey);
-            }
-        });
+
 
         User.getHangout(context, hkey, this, usersArray);
     }
@@ -66,9 +61,24 @@ public class HangoutView extends Activity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_invite_friends:
-                // TODO: take us to a new activity to invite friends
+//                Intent invite = new Intent(context, InviteAdditionalToHangoutActivity.class);
+//                Bundle bundle = new Bundle();
+//                String ukeys = "";
+//                for (HashMap<String, String> user : usersArray) {
+//                    ukeys += (user.get("ukey") + ",");
+//                }
+//                bundle.putString("ukeys", ukeys);
+//                invite.putExtras(bundle);
+//                startActivity(invite);
+
                 // or replace the list view with friends to invite
                 return true;
+            case R.id.action_leave_hangout:
+                // TODO: take us to a new activity to invite friends
+                // or replace the list view with friends to invite
+                User.leaveHangout(context, activity, hkey);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

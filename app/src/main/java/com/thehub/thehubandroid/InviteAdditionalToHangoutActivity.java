@@ -3,10 +3,7 @@ package com.thehub.thehubandroid;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,32 +16,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class NewHangoutActivity extends Activity {
+/**
+ * Created by David on 12/8/2014.
+ */
+public class InviteAdditionalToHangoutActivity extends Activity {
     private ListView listView;
     private Context context;
     private ArrayList<HashMap<String, String>> freeFriendsArray;
-    private Button createHangoutButton;
+    private Button inviteToHangoutButton;
     private TextView ukeys_textview;
-    private String invited_ukey;
+    private String invited_ukeys;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_hangout_activity);
+        setContentView(R.layout.invite_additional_to_hangout);
         context = getApplicationContext();
         listView = (ListView) findViewById(R.id.listView);
-        createHangoutButton = (Button) findViewById(R.id.createHangoutButton);
+        inviteToHangoutButton = (Button) findViewById(R.id.inviteToHangoutButton);
         ukeys_textview = (TextView) findViewById(R.id.ukeys);
-        // prevent the keyboard from automatically showing
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        invited_ukey = null;
 
-        // if a friend was invited to hang, figure how who that friend was and mark him as invited
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            invited_ukey = bundle.getString("friend_ukey");
-            ukeys_textview.append(invited_ukey + ",");
-        }
+        invited_ukeys = bundle.getString("ukeys");
 
         // Create empty array (will update it later)
         freeFriendsArray = new ArrayList<HashMap<String, String>>();
@@ -64,21 +57,20 @@ public class NewHangoutActivity extends Activity {
             }
         });
 
-        createHangoutButton.setOnClickListener(new View.OnClickListener() {
+        inviteToHangoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 String raw_ukeys = ukeys_textview.getText().toString();
 
                 // only create hangout if you invited someone
-                if(raw_ukeys.trim().equals("")) {
+                if (raw_ukeys.trim().equals("")) {
                     Toast.makeText(context, "You can hangout alone, just not with our app!\nPlease select a friend.", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     EditText edittext = (EditText) findViewById(R.id.hangout_title);
                     String title = edittext.getText().toString();
                     // Make sure theres a title set
-                    if(title.trim().equals("")){
+                    if (title.trim().equals("")) {
                         Toast.makeText(context, "Please give this hangout a title", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -101,6 +93,6 @@ public class NewHangoutActivity extends Activity {
          * a {@link com.thehub.thehubandroid.GetFacebookFriendsTask}.
          *
          */
-        User.getFreeFacebookFriends(context, listView, freeFriendsArray, this, invited_ukey);
+        User.getFreeFacebookFriends(context, listView, freeFriendsArray, this, invited_ukeys);
     }
 }
