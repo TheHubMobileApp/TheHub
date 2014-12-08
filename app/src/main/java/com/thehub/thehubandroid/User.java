@@ -145,7 +145,7 @@ public class User {
             Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
         }
 
-        new GetAdditionalFacebookFriendsTask(context, listView, usersArray, parent, invited_ukey).execute(new String[]{url, ukey, akey});
+        new GetFreeFacebookFriendsTask(context, listView, usersArray, parent, invited_ukey).execute(new String[]{url, ukey, akey});
 
     }
 
