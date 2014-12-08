@@ -71,7 +71,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#958687"
+            android:background="@color/cyan"
             android:text="Deny"
             android:textColor="#333"
             android:textSize="20sp" />
@@ -84,7 +84,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="#958687"
+            android:background="@color/cyan"
             android:text="Accept"
             android:textColor="#333"
             android:textSize="20sp" />

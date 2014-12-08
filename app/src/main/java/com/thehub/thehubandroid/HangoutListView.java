@@ -49,9 +49,9 @@ public class HangoutListView extends Fragment {
 
                         Button invite_button = (Button) view.findViewById(R.id.inviteUsersButton);
                         if(invite_button.getVisibility() == View.GONE) {
-                            invite_button.setVisibility(View.VISIBLE);
+                            //invite_button.setVisibility(View.VISIBLE);
                         } else {
-                            invite_button.setVisibility(View.GONE);
+                            //invite_button.setVisibility(View.GONE);
                         }
                         //                String ukey = user.get("ukey");
                         //

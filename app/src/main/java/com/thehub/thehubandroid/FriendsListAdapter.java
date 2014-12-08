@@ -85,6 +85,7 @@ public class FriendsListAdapter extends BaseAdapter {
                 //v.setBackgroundColor(Color.parseColor(#83FF83));
                 CircleImageView temp = (CircleImageView) v.findViewById(R.id.profPic);
                 temp.setBorderColor(Color.parseColor("#69F0AE"));
+                invite_button.setVisibility(View.VISIBLE);
                 if (activity_name.equals("")) {
                     activity_level_view.setText("is at a " + activity_level + " out of 10");
                 } else {
@@ -93,6 +94,7 @@ public class FriendsListAdapter extends BaseAdapter {
             } else if (availability.equals(Utils.BUSY)) {
                 CircleImageView temp = (CircleImageView) v.findViewById(R.id.profPic);
                 temp.setBorderColor(Color.parseColor("#FF7043"));
+                invite_button.setVisibility(View.INVISIBLE);
             } else {
                 // TODO: Remove this?
                 Log.i("DEBUG", "Illegal availability");
