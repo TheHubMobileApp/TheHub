@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,9 +29,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new InviteToHangTask(context, friend_ukeys).execute(url, ukey, akey, title);
     }
@@ -47,9 +46,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new RespondToPushTask(context, activity).execute(url, ukey, akey, response);
     }
@@ -65,9 +64,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new UpdateAvailabilityTask(context, activity).execute(new String[]{url, available, ukey,
                 akey, activity_level, activity_name, exp_hrs, exp_min, Boolean.toString(finish_activity)});
@@ -81,9 +80,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new GetFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
@@ -96,9 +95,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new GetHangoutTask(context, activity, usersArray).execute(new String[]{url, ukey, akey});
     }
@@ -111,9 +110,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new GetHangoutsTask(context, listView, hangoutsArray).execute(new String[]{url, ukey, akey});
     }
@@ -126,9 +125,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new GetFacebookFriendsTask(context, listView, usersArray).execute(new String[]{url, ukey, akey});
     }
@@ -141,9 +140,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new GetFreeFacebookFriendsTask(context, listView, usersArray, parent, invited_ukey).execute(new String[]{url, ukey, akey});
 
@@ -157,9 +156,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new GetCurrentUserTask(context, activity).execute(url, ukey, akey);
     }
@@ -172,9 +171,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("")){
-            Toast.makeText(context, "ukey is empty...", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("")){
+//            Toast.makeText(context, "ukey is empty...", Toast.LENGTH_SHORT).show();
+//        }
 
         new RemoveFromHangoutTask(context, parent_activity).execute(url, akey, ukey, hkey);
     }
@@ -187,9 +186,9 @@ public class User {
         String akey = theHubprefs.getString("akey", "");
         String ukey = theHubprefs.getString("ukey", "");
 
-        if(ukey.equals("") || akey.equals("")){
-            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
-        }
+//        if(ukey.equals("") || akey.equals("")){
+//            Toast.makeText(context, "ukey or akey is empty... ", Toast.LENGTH_SHORT).show();
+//        }
 
         new RegisterForGCMTask(context, regID).execute(new String[]{url, ukey, akey});
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.FacebookException;
 import com.facebook.Request;
@@ -34,6 +35,7 @@ public class MainFragment extends Fragment {
     private Session sesh;
     private View rootView;
     private Button view_list_button;
+    private boolean authed = false;
 
     private void onSessionStateChange(Session session, SessionState state,
                                       Exception exception) {
@@ -61,7 +63,8 @@ public class MainFragment extends Fragment {
                                 hubprefsEditor.commit();
 
                                 User.loginToFacebook(getActivity().getApplicationContext(), user_id, access_token, expire);
-
+                                // TODO: Do this for freal
+                                authed = true;
                                 // TODO -- get the expire stuff
                                 // graph api explorer
                                 // username == ukey
@@ -81,6 +84,7 @@ public class MainFragment extends Fragment {
 //				Log.i(TAG, "Previously logged in...");
             }
         } else if (state.isClosed()) {
+            authed = false;
 //			Log.i(TAG, "Logged out... Clearing Prefs");
 
             SharedPreferences hubprefs = getActivity().getApplicationContext().getSharedPreferences(Utils.PREFS_FILE, Context.MODE_MULTI_PROCESS);
@@ -123,8 +127,12 @@ public class MainFragment extends Fragment {
         view_list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActionActivity.class);
-                startActivity(intent);
+                if(authed) {
+                    Intent intent = new Intent(getActivity(), ActionActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Please log in to continue.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
